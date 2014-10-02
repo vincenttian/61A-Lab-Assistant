@@ -14,6 +14,7 @@ gem 'pg'
 gem 'slim-rails'
 gem 'thin'
 group :development do
+  gem 'annotate', '~> 2.6.1'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
   gem 'quiet_assets'
