@@ -1,36 +1,11 @@
-Merlin
+CS169 Lab Assistant Project
 ================
 
-Resistance Server
+[Google Doc to specs] (https://docs.google.com/document/d/1N_nocpqQ78HhfVEzlyf9IWe11TKSnsc7suQdlcPADHU/edit)
 
-
-Ruby on Rails
--------------
-
-This application requires:
-
-- Ruby 2.1.1
-- Rails 4.1.6
-
-Learn more about [Installing Rails](http://railsapps.github.io/installing-rails.html).
-
-Getting Started
----------------
-
-Documentation and Support
--------------------------
-
-Issues
--------------
-
-Similar Projects
-----------------
-
-Contributing
-------------
-
-Credits
--------
-
-License
--------
+Quinton Dang
+Brian Ha
+Youri Park
+Tristan Jones
+Vincent Tian
+Kevin Xie
