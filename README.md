@@ -5,6 +5,8 @@ CS169 Lab Assistant Project
 
 [Heroku Staging] (https://cs61a-lab-assistant.herokuapp.com/)
 
+[Entry Customer Interview] (https://www.youtube.com/watch?v=0p2kDRuTBGQ&feature=youtu.be)
+
 Quinton Dang
 Brian Ha
 Youri Park
