@@ -7,6 +7,8 @@ CS169 Lab Assistant Project
 
 [Entry Customer Interview] (https://www.youtube.com/watch?v=0p2kDRuTBGQ&feature=youtu.be)
 
+[Pivotal Tracker] (https://www.pivotaltracker.com/n/projects/1283428)
+
 Quinton Dang
 Brian Ha
 Youri Park
