@@ -8,4 +8,5 @@
 #
 
 class LabAssistant < ActiveRecord::Base
+  belongs_to :teaching_assistant
 end

@@ -8,4 +8,5 @@
 #
 
 class TeachingAssistant < ActiveRecord::Base
+  has_many :lab_assistants
 end
