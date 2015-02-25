@@ -10,6 +10,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'devise'
+gem 'cancancan'
 gem 'pg'
 gem 'slim-rails'
 gem 'thin'
