@@ -8,5 +8,6 @@
 #
 
 class TeachingAssistant < ActiveRecord::Base
+  devise :database_authenticatable, :recoverable, :rememberable, :validatable
   has_many :lab_assistants
 end
