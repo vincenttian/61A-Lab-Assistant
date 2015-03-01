@@ -2,9 +2,10 @@
 #
 # Table name: lab_assistants
 #
-#  id         :integer          not null, primary key
-#  created_at :datetime
-#  updated_at :datetime
+#  id                    :integer          not null, primary key
+#  created_at            :datetime
+#  updated_at            :datetime
+#  teaching_assistant_id :integer
 #
 
 require 'test_helper'
