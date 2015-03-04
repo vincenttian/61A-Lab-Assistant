@@ -25,4 +25,7 @@ end
 group :development, :test do
   gem 'pry-rails'
   gem 'pry-rescue'
+  gem "rspec-rails", ">= 2.0.1"
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
 end
