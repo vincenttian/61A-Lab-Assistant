@@ -9,6 +9,8 @@ CS169 Lab Assistant Project
 
 [Pivotal Tracker] (https://www.pivotaltracker.com/n/projects/1283428)
 
+[Code Climate] (https://codeclimate.com/github/vincenttian/61A-Lab-Assistant/)
+
 Quinton Dang
 Brian Ha
 Youri Park
