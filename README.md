@@ -11,6 +11,8 @@ CS169 Lab Assistant Project
 
 [Code Climate] (https://codeclimate.com/github/vincenttian/61A-Lab-Assistant/)
 
+[Travis CI] (https://travis-ci.org/vincenttian/61A-Lab-Assistant)
+
 Quinton Dang
 Brian Ha
 Youri Park
