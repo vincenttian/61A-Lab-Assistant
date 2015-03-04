@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225223812) do
+ActiveRecord::Schema.define(version: 20150301014356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,20 @@ ActiveRecord::Schema.define(version: 20150225223812) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email"
+    t.string   "encrypted_password"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string   "confirmation_token"
+    t.string   "unlock_token"
+    t.string   "first_name"
+    t.string   "last_name"
   end
+
+  add_index "teaching_assistants", ["confirmation_token"], name: "index_teaching_assistants_on_confirmation_token", unique: true, using: :btree
+  add_index "teaching_assistants", ["email"], name: "index_teaching_assistants_on_email", unique: true, using: :btree
+  add_index "teaching_assistants", ["reset_password_token"], name: "index_teaching_assistants_on_reset_password_token", unique: true, using: :btree
+  add_index "teaching_assistants", ["unlock_token"], name: "index_teaching_assistants_on_unlock_token", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -20,4 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  devise:
+    sessions:
+      teacher:
+        new:
+          heading: Log In
+          subtitle: We're ready to get started.

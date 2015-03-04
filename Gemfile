@@ -14,6 +14,7 @@ gem 'cancancan'
 gem 'pg'
 gem 'slim-rails'
 gem 'thin'
+gem 'rake'
 group :development do
   gem 'annotate', '~> 2.6.1'
   gem 'better_errors'
