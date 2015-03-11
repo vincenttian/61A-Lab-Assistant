@@ -1,0 +1,3 @@
+.errors class=hidden_if?(obj.errors.none?)
+  - obj.errors.full_messages.each do |message|
+    .row = message

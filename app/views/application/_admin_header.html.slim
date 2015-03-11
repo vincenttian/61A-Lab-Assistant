@@ -1,0 +1,11 @@
+header.navigation
+  .navigation-wrapper
+    = link_to "MENU", "#", class: "navigation-menu-button", id: "js-mobile-menu"
+    .nav
+      ul.navigation-menu#js-navigation-menu
+        / li.nav-link
+        /   = link_to Other path 1
+        / li.nav-link
+        /   = link_to Other path 2
+    .navigation-tools
+      = link_to "Log Out", destroy_admin_session_path, method: :delete, class: "logout"
