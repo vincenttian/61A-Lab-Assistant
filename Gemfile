@@ -29,3 +29,6 @@ group :development, :test do
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
 end
+group :production do
+  gem 'rails_12factor'
+end
