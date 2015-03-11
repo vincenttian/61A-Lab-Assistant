@@ -2,11 +2,11 @@ module DeviseSettings
   extend ActiveSupport::Concern
 
   def current_user
-    current_teaching_assistant
+    current_admin
   end
 
   def after_sign_in_path_for(user)
-    return teaching_assistant_dashboard_path if user.is_a? TeachingAssistant
+    return admin_dashboard_path if user.is_a? Admin
     fail "Bad user!"
   end
 end
