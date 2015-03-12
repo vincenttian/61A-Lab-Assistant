@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   devise_scope :admin do
-    root to: "devise/sessions#new"
+    root to: "home#index"
   end
   devise_for :admins
 
@@ -15,5 +15,8 @@ Rails.application.routes.draw do
 	  # 
     end
   end
+
+  resources :lab_assistants, only: [:new, :create, :index, :destroy]
+  resources :teaching_assistants, only: [:new, :create, :index, :destroy]
 
 end

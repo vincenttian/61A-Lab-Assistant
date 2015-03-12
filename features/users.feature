@@ -1,4 +1,4 @@
-Feature: User Login
+Feature: Admin Login
 	In order save my details
 	As a user
 	I want to be able to log into the site

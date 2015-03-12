@@ -1,4 +1,5 @@
 .home
+  a href='admins/sign_in' Admin Login
   .home-banner
     h2 CS61A Lab Assistant Homepage
 
@@ -7,12 +8,28 @@
       .row
         .about
           .content
-            .heading Gonne ba fun
-            p
-              Filler
+            .heading Teaching Assistant Creation
+          p
+            = form_for(@teachingassistant) do |f|
+              p First Name:
+              = f.text_field :first_name, required: ""
+              p Last Name:
+              = f.text_field :last_name, required: ""
+              p Email
+              = f.email_field :email, required: ""
+              p
+              = f.submit
         .about
           .content
-            .heading Sup
-            p
-              Blah
+            .heading Lab Assistant Creation
+          p
+            = form_for(@labassistant) do |f|
+              p First Name:
+              = f.text_field :first_name, required: ""
+              p Last Name:
+              = f.text_field :last_name, required: ""
+              p Email
+              = f.email_field :email, required: ""
+              p
+              = f.submit
   hr
