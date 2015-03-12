@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :lab_assistants, only: [:new, :create, :index, :destroy]
-  resources :teaching_assistants, only: [:new, :create, :index, :destroy]
+  resources :lab_assistants
+  resources :teaching_assistants
 
 end

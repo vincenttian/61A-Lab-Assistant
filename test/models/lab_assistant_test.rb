@@ -6,6 +6,9 @@
 #  created_at            :datetime
 #  updated_at            :datetime
 #  teaching_assistant_id :integer
+#  first_name            :string(255)
+#  last_name             :string(255)
+#  email                 :string(255)
 #
 
 require 'test_helper'

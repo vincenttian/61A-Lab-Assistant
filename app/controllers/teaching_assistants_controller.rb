@@ -5,10 +5,13 @@ class TeachingAssistantsController < ApplicationController
   	@ta.password = 'password'
   	if @ta.save
   	  redirect_to root_path, flash: { success: "You will receive an email when you are accepted as a Teaching Assistant" } 
-	else
-	  redirect_to root_path, flash: { error: @ta.errors.messages.to_s }
-	end
-  	
+  	else
+  	  redirect_to root_path, flash: { error: @ta.errors.messages.to_s }
+  	end
+  end
+
+  def show
+    @ta = TeachingAssistant.find(params[:id])
   end
 
   def ta_params
