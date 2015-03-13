@@ -1,3 +1,6 @@
+[![Code Climate](https://img.shields.io/codeclimate/github/vincenttian/61A-Lab-Assistant.svg?style=flat-square)](https://codeclimate.com/github/vincenttian/61A-Lab-Assistant/)
+[![Build Status](https://img.shields.io/travis/vincenttian/61A-Lab-Assistant/master.svg?style=flat-square)](https://travis-ci.org/vincenttian/61A-Lab-Assistant)
+
 CS169 Lab Assistant Project
 ================
 
@@ -9,9 +12,8 @@ CS169 Lab Assistant Project
 
 [Pivotal Tracker] (https://www.pivotaltracker.com/n/projects/1283428)
 
-[Code Climate] (https://codeclimate.com/github/vincenttian/61A-Lab-Assistant/)
 
-[Travis CI] (https://travis-ci.org/vincenttian/61A-Lab-Assistant)
+
 
 Quinton Dang
 Brian Ha
