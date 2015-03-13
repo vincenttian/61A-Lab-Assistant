@@ -1,11 +1,11 @@
-Then(/^I should see a confirmation$/) do
+Then(/^I should see 'Invalid login' on the page$/) do
   pending # express the regexp above with the code you wish you had
 end
 
-Then(/^I should see a invalid first name error message$/) do
+Then(/^I should receive an email$/) do
   pending # express the regexp above with the code you wish you had
 end
 
-Then(/^I should see a invalid email error message$/) do
+Then(/^I should not receive an email$/) do
   pending # express the regexp above with the code you wish you had
 end
