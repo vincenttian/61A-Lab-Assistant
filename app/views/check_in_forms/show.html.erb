@@ -1,0 +1,20 @@
+h1 CheckInForms#show
+p Find me in app/views/check_in_forms/show.html.slim
+
+<h1>Showing Check In Form Details</h1>
+<h3>Name</h3>
+<%= @form.name %>
+<h3>SID</h3>
+<%= @form.SID %>
+<h3>Event</h3>
+<%= @form.event %>
+<br>
+<br>
+
+<%= link_to 'Back to Teacher Dashboard', teaching_assistants_dashboard_path %>
+<br>
+<%= link_to 'Create another Check In Form', new_check_in_form_path %>
+<br>
+<%= link_to 'Edit this form', edit_check_in_form_path %>
+<br>
+<%= link_to 'Delete this form', check_in_form_path, :method => :delete %>

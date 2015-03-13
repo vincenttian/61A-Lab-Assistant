@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  
   devise_scope :admin do
     root to: "home#index"
   end
@@ -22,5 +22,6 @@ Rails.application.routes.draw do
 
   resources :lab_assistants
   resources :teaching_assistants
+  resources :check_in_forms
 
 end

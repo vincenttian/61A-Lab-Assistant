@@ -4,8 +4,7 @@ module TeachingAssistants
     before_filter :authenticate_teaching_assistant!
 
     def show
-      @la = LabAssistant.all
-      @ta = TeachingAssistant.all
+      @forms = CheckInForm.all
     end
   end
 end
