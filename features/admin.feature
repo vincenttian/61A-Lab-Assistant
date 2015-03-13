@@ -37,4 +37,4 @@ Feature: Admin Login
         Given I am on the forgot password page
         And I fill in "admin_email" with "bademail@example.com"
         When I press "Send me reset password instructions"
-        Then I should not receive an email
+        Then I should get an Email Not Found error
