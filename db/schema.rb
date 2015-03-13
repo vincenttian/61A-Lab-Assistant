@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20150312214147) do
   add_index "admins", ["unlock_token"], name: "index_admins_on_unlock_token", unique: true, using: :btree
 
   create_table "lab_assistants", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "teaching_assistant_id"
@@ -47,10 +48,11 @@ ActiveRecord::Schema.define(version: 20150312214147) do
   add_index "lab_assistants", ["teaching_assistant_id"], name: "index_lab_assistants_on_teaching_assistant_id", using: :btree
 
   create_table "teaching_assistants", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email"
-    t.string   "encrypted_password"
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
