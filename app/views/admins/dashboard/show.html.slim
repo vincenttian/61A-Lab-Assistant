@@ -13,7 +13,7 @@
 		  p Teaching Assistants
           - unless @ta.empty?
 		    - for t in @ta do
-			  a href="#{teaching_assistant_path(l)}" #{t.first_name}
+			  a href="#{teaching_assistant_path(t)}" #{t.first_name}
 		  - else
 		    p NO tas FOUND
 
