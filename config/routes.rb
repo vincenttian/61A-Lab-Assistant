@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :users
 
   devise_scope :admin do
     root to: "home#index"
   end
   devise_for :admins
+  devise_for :teaching_assistants
 
   namespace :admins, as: :admin do
+    resource :dashboard, only: :show, controller: "dashboard"
+  end
+
+  namespace :teaching_assistants, as: :teaching_assistants do
     resource :dashboard, only: :show, controller: "dashboard"
   end
 
