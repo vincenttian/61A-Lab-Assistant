@@ -3,6 +3,7 @@
 # Table name: lab_assistants
 #
 #  id                    :integer          not null, primary key
+#  name                  :string(255)
 #  created_at            :datetime
 #  updated_at            :datetime
 #  teaching_assistant_id :integer

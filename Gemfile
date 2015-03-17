@@ -28,6 +28,7 @@ group :development, :test do
   gem "rspec-rails", ">= 2.0.1"
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
+  gem 'simplecov'
 end
 group :production do
   gem 'rails_12factor'
