@@ -1,0 +1,19 @@
+<div>    
+	<h2> Admin Dashboard Stuff</h2>
+	<p>Lab Assistants</p>
+	<% unless @la.empty? %>
+		<% for l in @la do %>
+			<a href= <%="#{lab_assistant_path(l)}"%>> <%= l.first_name %> </a>
+		<% end %>	
+	<% else %>
+		<p> NO las FOUND </p>
+	<% end %>
+	<p>Teaching Assistants</p>
+	<% unless @ta.empty? %>
+		<% for t in @ta do %>
+			<a href= <%="#{teaching_assistant_path(l)}"%>> <%= t.first_name %> </a>
+		<% end %>	
+	<% else %>
+		<p> NO tas FOUND </p>
+	<% end %>
+</div>
