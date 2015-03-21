@@ -1,43 +1,46 @@
 <div class="home">
+	<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+		<ul class="nav navbar-nav"> 
+			<li> 
+				<a href="/">CS61a Lab Assistant Home</a>		
+			</li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right"> 
+			<li>
+				<a href="admins/sign_in">Admin Login</a><br />
+			</li>
+			<li>
+				<a href="teaching_assistants/sign_in">TA Login</a>
+			</li>
+		</ul>
+</div>
 
-	<a href="admins/sign_in">Admin Login</a><br />
-	<a href="teaching_assistants/sign_in">TA Login</a>
+<div class="home-banner" align="center">
+  <h2>CS61A Lab Assistant Homepage</h2>
+</div>	
 
-	<div class="home-banner">
-	  <h2>CS61A Lab Assistant Homepage</h2>
-	</div>	
-
-	<div class="information">
-	  <div class="container">
-	    <div class="row">
-	      <div class="about">
-	        <div class="content">
-	          <div class="heading">
-	            Teaching Assistant Creation
-	          </div>
-	          <%= form_for @teachingassistant do |f| %>
+<div class="container">
+	<div class="row">
+		<div class='col-xs-6'>
+  	  		Teaching Assistant Creation
+	        <%= form_for @teachingassistant do |f| %>
 				First name: <%= f.text_field :first_name, required: "" %><br />
 				Last name : <%= f.text_field :last_name, required: "" %><br />
 				Email : <%= f.email_field :email, required: "" %><br />
 				<%= f.submit %>
-			  <% end %>
-	        </div>
+			<% end %>
+  		</div>
+        <div class='col-xs-6'>
+	      <div>
+	        Lab Assistant Creation
 	      </div>
-
-	      <div class="about">
-	        <div class="content">
-	          <div class="heading">
-	            Lab Assistant Creation
-	          </div>
-	          <%= form_for @labassistant do |f| %>
-				First name: <%= f.text_field :first_name, required: "" %><br />
-				Last name : <%= f.text_field :last_name, required: "" %><br />
-				Email : <%= f.email_field :email, required: "" %><br />
-				<%= f.submit %>
-			  <% end %>
-	        </div>
-	      </div>
+	      <%= form_for @labassistant do |f| %>
+			First name: <%= f.text_field :first_name, required: "" %><br />
+			Last name : <%= f.text_field :last_name, required: "" %><br />
+			Email : <%= f.email_field :email, required: "" %><br />
+			<%= f.submit %>
+		  <% end %>
 	    </div>
-	  </div>
 	</div>
 </div>
+
