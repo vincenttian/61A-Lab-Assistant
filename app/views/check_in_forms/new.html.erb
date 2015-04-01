@@ -1,11 +1,4 @@
-h1 CheckInForms#new
-p Find me in app/views/check_in_forms/new.html.slim
-
 <h1> Our Form to Create a Check In Form </h1>
-
-<% if flash[:notice] %>
-	<%= flash[:notice] %>
-<% end %>
 
 <%= form_for CheckInForm.new, url: {action: "create"} do |f| %>
   Name: <%= f.text_field :name %>

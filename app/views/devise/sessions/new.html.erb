@@ -1,0 +1,44 @@
+<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+    <ul class="nav navbar-nav"> 
+      <li> 
+        <a href="/">CS61a Lab Assistant Home</a>    
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right"> 
+      <li>
+        <a href="/admins/sign_in">Admin Login</a><br />
+      </li>
+      <li>
+        <a href="/teaching_assistants/sign_in">TA Login</a>
+      </li>
+    </ul>
+<br><br><br><br>
+<div class="row">
+  <div class="border-form-div">
+    <h2> <%= resource.class.name.split(/(?=[A-Z])/).join(" ") %> Log In</h2>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end -%>
+
+      <div class="actions">
+        <%= f.submit "Log in" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= render "devise/shared/links" %>

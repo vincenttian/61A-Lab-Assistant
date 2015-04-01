@@ -1,0 +1,11 @@
+<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+	<ul class="nav navbar-nav"> 
+		<li> 
+			<a href="/admins/dashboard">Admin Dashboard Menu</a>		
+		</li>
+	</ul>
+	<ul class="nav navbar-nav navbar-right"> 
+		<li>
+			<%= link_to "Log Out", destroy_admin_session_path, method: :delete, class: "logout" %>
+		</li>
+	</ul>

@@ -1,17 +1,18 @@
-<br>
-<br>
+<div class="row">    
+	<br>
+	<h2 align="center"> Teaching Assistant Dashboard Stuff</h2>
+	Check in forms: 
+	<br><br>
 
-Check in forms: 
-<br><br>
+	<% @forms.each do |f| %>
+	 <%= f.name %>
+	 <%= f.SID %>
+	 <%= f.event %>
+	 <%= link_to 'See form', check_in_form_path(f) %>
+	 <br>
+	<% end %>
 
-<% @forms.each do |f| %>
- <%= f.name %>
- <%= f.SID %>
- <%= f.event %>
- <%= link_to 'See form', check_in_form_path(f) %>
- <br>
-<% end %>
+	<br>
 
-<br>
-
-<a href='/check_in_forms/new'> Create a Check In Form </a>
+	<a href='/check_in_forms/new'> Create a Check In Form </a>
+</div>

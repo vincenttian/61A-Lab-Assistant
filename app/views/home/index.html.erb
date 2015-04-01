@@ -1,0 +1,86 @@
+<div class="home">
+	<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+		<ul class="nav navbar-nav"> 
+			<li> 
+				<a href="/">CS61a Lab Assistant Home</a>		
+			</li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right"> 
+			<li>
+				<a href="admins/sign_in">Admin Login</a><br />
+			</li>
+			<li>
+				<a href="teaching_assistants/sign_in">TA Login</a>
+			</li>
+		</ul>
+</div>
+
+<div class="home-banner" align="center">
+  <h2>CS61A Lab Assistant Homepage</h2>
+</div>
+
+<br> <br>
+
+
+<div align="center">
+	<%= image_tag "home_icon.png", :class=>"img-responsive", :size=>"420" %>
+</div>
+
+<br> <br>
+
+<div class="row">
+	<div class="col-xs-4" align="center">
+		<%= image_tag "admin.png", :class=>"img-responsive", :size=>"60"%>
+	</div>
+	<div class="col-xs-4" align="center">
+		<%= image_tag "teaching.png", :class=>"img-responsive", :size=>"60"%>
+	</div>
+	<div class="col-xs-4" align="center">
+		<%= image_tag "lab.png", :class=>"img-responsive", :size=>"60"%>
+	</div>
+</div
+
+<div class="row">
+	<div class="col-xs-4" align="center">
+		<p> Admin/Course Manager </p>
+		Control everything!
+	</div>
+	<div class="col-xs-4" align="center">
+		<p> Teaching Assistants </p>
+		Manage your sections and check LAs in!
+	</div>
+	<div class="col-xs-4" align="center">
+		<p> Lab Assistants </p>
+		Keep your contact info up to date!
+	</div>
+</div>
+
+
+<br> <br>
+<br> <br>
+
+<div class="container">
+	<div class="row">
+		<div class='col-xs-6'>
+  	  		Teaching Assistant Creation
+	        <%= form_for @teachingassistant do |f| %>
+				First name: <%= f.text_field :first_name, required: "" %><br />
+				Last name : <%= f.text_field :last_name, required: "" %><br />
+				Email : <%= f.email_field :email, required: "" %><br />
+				<%= f.submit %>
+			<% end %>
+  		</div>
+        <div class='col-xs-6'>
+	      <div>
+	        Lab Assistant Creation
+	      </div>
+	      <%= form_for @labassistant do |f| %>
+			First name: <%= f.text_field :first_name, required: "" %><br />
+			Last name : <%= f.text_field :last_name, required: "" %><br />
+			Email : <%= f.email_field :email, required: "" %><br />
+			<%= f.submit %>
+		  <% end %>
+	    </div>
+	</div>
+</div>
+
