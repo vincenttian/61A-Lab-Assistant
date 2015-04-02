@@ -25,4 +25,6 @@ Rails.application.routes.draw do
   resources :teaching_assistants
   resources :check_in_forms
 
+  match 'admins/dashboard', to:'admins/dashboard#show', via: [:get, :post]
+
 end

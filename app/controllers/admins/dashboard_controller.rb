@@ -11,6 +11,18 @@ module Admins
         la_to_change = LabAssistant.find(la_id)
         toggle_la(la_to_change)
       end
+
+      la_ids = (params[:la_ids] || [])
+      la_ids.each do |id|
+        la = LabAssistant.find(id)
+        if params[:commit] == 'Validate'
+          validate_la(la)
+        elsif params[:commit] == 'Invalidate'
+          invalidate_la(la)
+        else
+          la.destroy          
+        end
+      end
     end
 
     private

@@ -3,21 +3,29 @@
 	<h2 align="center"> Admin Dashboard Stuff</h2>
 	<p>Lab Assistants</p>
 	<% unless @la.empty? %>
-		<table>
-		<tr>
-			<th>Full Name</th>
-			<th>Email</th>
-			<th>Validation Status</th>
-			<th>Validate/Invalidate</th>
-		</tr>
-		<% for l in @la do %>
-		<tr>
-			<td> <a href= <%="#{lab_assistant_path(l)}"%>> <%= l.first_name %> </a></td>
-			<td> <%= l.email %> </td>
-			<td> <%= l.validated %></td>
-			<td> <%= link_to text_for_validation_status(l.validated), admin_dashboard_path(la_to_change: l.id) %> </td>
-		</tr>
-		<% end %>	
+		<%= form_tag admin_dashboard_path do %>
+			<table>
+				<tr>
+					<th></th>
+					<th>Full Name</th>
+					<th>Email</th>
+					<th>Validation Status</th>
+				</tr>
+			<% for l in @la do %>
+				<tr>
+					<td> <%= check_box_tag 'la_ids[]', l.id %> </td>
+					<td> <a href= <%="#{lab_assistant_path(l)}"%>> <%= l.first_name %> </a></td>
+					<td> <%= l.email %> </td>
+					<td> <%= text_for_validation_status(l.validated) %></td>
+				</tr>
+			<% end %>
+		</table>
+
+		<%= submit_tag "Validate" %>
+		<%= submit_tag "Invalidate" %>
+		<%= submit_tag "Delete" %>
+
+		<% end %>
 	<% else %>
 		<p> NO Lab Assistants FOUND </p>
 	<% end %>
