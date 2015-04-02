@@ -3,11 +3,23 @@
 	<h2 align="center"> Admin Dashboard Stuff</h2>
 	<p>Lab Assistants</p>
 	<% unless @la.empty? %>
+		<table>
+		<tr>
+			<th>Full Name</th>
+			<th>Email</th>
+			<th>Validation Status</th>
+			<th>Validate/Invalidate</th>
+		</tr>
 		<% for l in @la do %>
-			<a href= <%="#{lab_assistant_path(l)}"%>> <%= l.first_name %> </a>
+		<tr>
+			<td> <a href= <%="#{lab_assistant_path(l)}"%>> <%= l.first_name %> </a></td>
+			<td> <%= l.email %> </td>
+			<td> <%= l.validated %></td>
+			<td> <%= link_to text_for_validation_status(l.validated), admin_dashboard_path(la_to_change: l.id) %> </td>
+		</tr>
 		<% end %>	
 	<% else %>
-		<p> NO las FOUND </p>
+		<p> NO Lab Assistants FOUND </p>
 	<% end %>
 	<p>Teaching Assistants</p>
 	<% unless @ta.empty? %>
@@ -15,6 +27,6 @@
 			<a href= <%="#{teaching_assistant_path(t)}"%>> <%= t.first_name %> </a>
 		<% end %>	
 	<% else %>
-		<p> NO tas FOUND </p>
+		<p> NO Teaching Assistants FOUND </p>
 	<% end %>
 </div>

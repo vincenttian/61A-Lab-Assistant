@@ -13,6 +13,7 @@
 #
 
 class LabAssistant < ActiveRecord::Base
+  devise :database_authenticatable, :recoverable, :rememberable, :trackable
   belongs_to :teaching_assistant
 
   validates :first_name, presence: true

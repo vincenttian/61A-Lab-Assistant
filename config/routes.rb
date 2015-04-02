@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
   devise_for :admins
   devise_for :teaching_assistants
+  devise_for :lab_assistants
 
   namespace :admins, as: :admin do
     resource :dashboard, only: :show, controller: "dashboard"
