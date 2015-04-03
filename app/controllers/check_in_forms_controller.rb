@@ -5,9 +5,11 @@ class CheckInFormsController < ApplicationController
   def create
     @form = CheckInForm.new(check_in_form_params)
     if @form.save
+      flash[:notice] = "Thank you for checking in!"
       redirect_to check_in_form_path @form
     else  
       # flash message
+      flash[:error] = "Couldn't process check-in, try again!"
       render new_check_in_form_path
     end
   end
