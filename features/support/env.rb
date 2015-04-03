@@ -1,3 +1,5 @@
+# Comment out these lines to make tests run locally
+# This below two lines are required for Travis to work
 require 'simplecov'
 SimpleCov.start 'rails'
 

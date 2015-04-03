@@ -13,7 +13,8 @@
 				</tr>
 			<% for l in @la do %>
 				<tr>
-					<td> <%= check_box_tag 'la_ids[]', l.id %> </td>
+					<!-- <td> <%= check_box_tag 'la_ids[]', l.id %> </td> -->
+					<td> <%= check_box_tag l.id, l.id %> </td>
 					<td> <a href= <%="#{lab_assistant_path(l)}"%>> <%= l.first_name %> </a></td>
 					<td> <%= l.email %> </td>
 					<td> <%= text_for_validation_status(l.validated) %></td>
