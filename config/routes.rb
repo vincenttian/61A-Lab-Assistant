@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   end
   devise_for :admins
   devise_for :teaching_assistants
+  devise_for :lab_assistants
 
   namespace :admins, as: :admin do
     resource :dashboard, only: :show, controller: "dashboard"
@@ -23,5 +24,7 @@ Rails.application.routes.draw do
   resources :lab_assistants
   resources :teaching_assistants
   resources :check_in_forms
+
+  match 'admins/dashboard', to:'admins/dashboard#show', via: [:get, :post]
 
 end

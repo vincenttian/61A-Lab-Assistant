@@ -4,11 +4,11 @@ Feature: Verify Lab Assistant Sign up
     I want to confim Lab Assistant Sign ups
 
     Given the following Lab Assistant exists:
-    | first_name | last_name | email            | password | verified |
-    | Alice1     | Assistant | labass1@test.com | password | false    |
-    | Bob2       | Assistant | labass2@test.com | password | false    |
-    | Claire3    | Assistant | labass3@test.com | password | false    |
-    | Dylan4     | Assistant | labass4@test.com | password | false    |
+    | first_name | last_name | email            | password | validated |
+    | Alice1     | Assistant | labass1@test.com | password | false     |
+    | Bob2       | Assistant | labass2@test.com | password | false     |
+    | Claire3    | Assistant | labass3@test.com | password | false     |
+    | Dylan4     | Assistant | labass4@test.com | password | false     |
 
     Scenario: Verification One Lab Assistant
         Given I am on the verification page

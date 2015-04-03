@@ -21,6 +21,8 @@ module NavigationHelpers
       '/admins/password/new'
     when /^the admin dashboard page$/
       '/admins/dashboard'
+    when /^the verification page$/
+      '/admins/dashboard'
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
