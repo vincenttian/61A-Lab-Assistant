@@ -31,9 +31,30 @@
 	<% end %>
 	<p>Teaching Assistants</p>
 	<% unless @ta.empty? %>
-		<% for t in @ta do %>
-			<a href= <%="#{teaching_assistant_path(t)}"%>> <%= t.first_name %> </a>
+		<%= form_tag admin_dashboard_path do %>
+			<table>
+				<tr>
+					<th></th>
+					<th>Full Name</th>
+					<th>Email</th>
+					<th>Validation Status</th>
+				</tr>
+			<% for t in @ta do %>
+				<tr>
+					<td> <%= check_box_tag 'ta_ids[]', t.id %> </td>
+					<td> <a href= <%="#{teaching_assistant_path(t)}"%>> <%= t.first_name %> </a></td>
+					<td> <%= t.email %> </td>
+					<td> <%= text_for_validation_status(t.validated) %></td>
+				</tr>
+			<% end %>
+		</table>
+
+		<%= submit_tag "Validate" %>
+		<%= submit_tag "Invalidate" %>
+		<%= submit_tag "Delete" %>
+
 		<% end %>	
+
 	<% else %>
 		<p> NO Teaching Assistants FOUND </p>
 	<% end %>

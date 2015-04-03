@@ -12,37 +12,54 @@ module Admins
         toggle_la(la_to_change)
       end
 
-      la_ids = (params[:la_ids] || [])
-      la_ids.each do |id|
-        la = LabAssistant.find(id)
-        if params[:commit] == 'Validate'
-          validate_la(la)
-        elsif params[:commit] == 'Invalidate'
-          invalidate_la(la)
-        else
-          la.destroy          
-        end
+      la_ids = params[:la_ids]
+      if !la_ids.nil?
+        las = LabAssistant.where(id: la_ids)
+        process_form_action(las, params[:commit])
+      end
+
+      ta_ids = params[:ta_ids]
+      if !ta_ids.nil?
+        tas = TeachingAssistant.where(id: ta_ids)
+        process_form_action(tas, params[:commit])
       end
     end
 
     private
 
-    def validate_la(la)
-      la.validated = true
-      la.save
-    end
-
-    def invalidate_la(la)
-      la.validated = false
-      la.save
-    end
-
-    def toggle_la(la)
-      if la.validated
-        invalidate_la(la)
-      else
-        validate_la(la)
+    def validate_all(users)
+      users.each do |user|
+        user.validated = true
+        user.save
       end
     end
+
+    def invalidate_all(users)
+      users.each do |user|
+        user.validated = false
+        user.save
+      end
+    end
+
+    def toggle(user)
+      if user.validated
+        invalidate_all([user])
+      else
+        validate_all([user])
+      end
+    end
+
+    def process_form_action(users, action)
+      if action == 'Validate'
+        validate_all(users)
+      elsif action == 'Invalidate'
+        invalidate_all(users)
+      else
+        users.each do |user|
+          user.destroy
+        end         
+      end
+    end
+
   end
 end
