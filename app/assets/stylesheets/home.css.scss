@@ -1,3 +1,23 @@
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+    font-family: 'Lato', Trebuchet MS, Tahoma, Sans-Serif;
+    margin: 0;
+}
+
+h1, h2 {
+    font-family: 'Lato', sans-serif;
+    line-height: 100%;
+}
+
+h1 {
+    font-weight: 500;
+    color: #0072c1;
+    position: relative;
+}
+
+h3 {
+    font-weight: 400;
+}
