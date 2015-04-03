@@ -1,20 +1,50 @@
-<div class="row">    
-	<br>
-	<h2 align="center"> Admin Dashboard Stuff</h2>
-	<p>Lab Assistants</p>
-	<% unless @la.empty? %>
-		<% for l in @la do %>
-			<a href= <%="#{lab_assistant_path(l)}"%>> <%= l.first_name %> </a>
-		<% end %>	
-	<% else %>
-		<p> NO las FOUND </p>
-	<% end %>
-	<p>Teaching Assistants</p>
-	<% unless @ta.empty? %>
-		<% for t in @ta do %>
-			<a href= <%="#{teaching_assistant_path(t)}"%>> <%= t.first_name %> </a>
-		<% end %>	
-	<% else %>
-		<p> NO tas FOUND </p>
-	<% end %>
+<div class="container">
+	<div class="row">    
+		<br>
+		<h2 align="center"> Admin Dashboard Stuff</h2>
+		<p>Lab Assistants</p>
+		<% unless @la.empty? %>
+		<table class="table table-hover table-striped">
+			<thead>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% for l in @la do %>
+				<tr>
+					<td><a href= <%="#{lab_assistant_path(l)}"%>><%= l.first_name %></a></td>
+					<td><%= l.last_name %></td>
+				</tr>
+			<% end %>
+			</tbody>
+		</table>
+		<% else %>
+			<p> NO las FOUND </p>
+		<% end %>
+		<br>
+		<br>
+		<p>Teaching Assistants</p>
+		<% unless @ta.empty? %>
+		<table class="table table-hover table-striped">
+			<thead>
+				<tr>
+					<th>First Name</th>
+					<th>Last Name</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% for t in @ta do %>
+					<tr>
+						<td><a href= <%="#{teaching_assistant_path(t)}"%>><%= t.first_name %></a></td>
+						<td><%= t.last_name %></td>
+					</tr>
+			<% end %>	
+			</tbody>
+		</table>
+		<% else %>
+			<p> NO tas FOUND </p>
+		<% end %>
+	</div>
 </div>
