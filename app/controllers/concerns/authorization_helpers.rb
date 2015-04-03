@@ -4,7 +4,7 @@ module AuthorizationHelpers
   included do
     rescue_from CanCan::AccessDenied do |exception|
       respond_to do |format|
-        if current_user.validated
+        if current_user.class != Admin and current_user.validated
           format.html { redirect_to path_after_access_denied(current_user), alert: exception.message }
           format.json { render json: { access_denied: true }, status: :forbidden }
         else
