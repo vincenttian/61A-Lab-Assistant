@@ -15,6 +15,10 @@ Rails.application.routes.draw do
     resource :dashboard, only: :show, controller: "dashboard"
   end
 
+  namespace :lab_assistants, as: :lab_assistants do
+    resource :dashboard, only: :show, controller: "dashboard"
+  end
+
   scope module: :admins do
     resources :admins, only: [:edit, :update] do
 	  # 

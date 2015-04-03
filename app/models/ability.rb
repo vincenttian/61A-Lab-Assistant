@@ -12,6 +12,9 @@ class Ability
       can :manage, :teaching_assistants_dashboard
       can [:edit, :update], TeachingAssistant, id: user.id
       can :manage, LabAssistant
+    elsif user.is_a? LabAssistant
+      can :manage, :lab_assistants_dashboard
+      can :manage, LabAssistant
     end
   end
 end
