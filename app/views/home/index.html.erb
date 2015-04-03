@@ -1,11 +1,11 @@
 <div class="home">
 	<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-		<ul class="nav navbar-nav"> 
-			<li> 
-				<a href="/">CS61a Lab Assistant Home</a>		
+		<ul class="nav navbar-nav">
+			<li>
+				<a href="/">CS61a Lab Assistant Home</a>
 			</li>
 		</ul>
-		<ul class="nav navbar-nav navbar-right"> 
+		<ul class="nav navbar-nav navbar-right">
 			<li>
 				<a href="admins/sign_in">Admin Login</a><br />
 			</li>
@@ -19,7 +19,7 @@
 </div>
 
 <div class="home-banner" align="center">
-  <h2>CS61A Lab Assistant Homepage</h2>
+  <h1>CS61A Lab Assistant Homepage</h1>
 </div>
 
 <br> <br>
@@ -65,7 +65,7 @@
 <div class="container">
 	<div class="row">
 		<div class='col-xs-6'>
-  	  		Teaching Assistant Creation
+	        <h3>Teaching Assistant Creation</h3>
 	        <%= form_for @teachingassistant do |f| %>
 				First name: <%= f.text_field :first_name, required: "" %><br />
 				Last name : <%= f.text_field :last_name, required: "" %><br />
@@ -74,9 +74,7 @@
 			<% end %>
   		</div>
         <div class='col-xs-6'>
-	      <div>
-	        Lab Assistant Creation
-	      </div>
+	      <h3>Lab Assistant Creation</h3>
 	      <%= form_for @labassistant do |f| %>
 			First name: <%= f.text_field :first_name, required: "" %><br />
 			Last name : <%= f.text_field :last_name, required: "" %><br />
