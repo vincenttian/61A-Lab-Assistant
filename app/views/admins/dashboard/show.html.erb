@@ -4,47 +4,70 @@
 		<h2 align="center"> Admin Dashboard Stuff</h2>
 		<p>Lab Assistants</p>
 		<% unless @la.empty? %>
-		<table class="table table-hover table-striped">
-			<thead>
-				<tr>
-					<th>First Name</th>
-					<th>Last Name</th>
-				</tr>
-			</thead>
-			<tbody>
-			<% for l in @la do %>
-				<tr>
-					<td><a href= <%="#{lab_assistant_path(l)}"%>><%= l.first_name %></a></td>
-					<td><%= l.last_name %></td>
-				</tr>
+			<%= form_tag admin_dashboard_path do %>
+				<table class="table table-hover table-striped">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Full Name</th>
+							<th>Email</th>
+							<th>Validation Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% for l in @la do %>
+							<tr>
+								<td> <%= check_box_tag 'la_ids[]', l.id %> </td> 
+								<td> <a href= <%="#{lab_assistant_path(l)}"%>> <%= l.first_name %> <%=l.last_name %> </a></td>
+								<td> <%= l.email %> </td>
+								<td> <%= text_for_validation_status(l.validated) %></td>
+							</tr>
+						<% end %>
+
+
+					<%= submit_tag "Validate" %>
+					<%= submit_tag "Invalidate" %>
+					<%= submit_tag "Delete" %>
+
+					</tbody>
+				</table>
 			<% end %>
-			</tbody>
-		</table>
 		<% else %>
-			<p> NO las FOUND </p>
+			<p> NO Lab Assistants FOUND </p>
 		<% end %>
-		<br>
-		<br>
 		<p>Teaching Assistants</p>
 		<% unless @ta.empty? %>
-		<table class="table table-hover table-striped">
-			<thead>
-				<tr>
-					<th>First Name</th>
-					<th>Last Name</th>
-				</tr>
-			</thead>
-			<tbody>
-			<% for t in @ta do %>
-					<tr>
-						<td><a href= <%="#{teaching_assistant_path(t)}"%>><%= t.first_name %></a></td>
-						<td><%= t.last_name %></td>
-					</tr>
+			<%= form_tag admin_dashboard_path do %>
+				<table class="table table-hover table-striped">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Full Name</th>
+							<th>Email</th>
+							<th>Validation Status</th>
+						</tr>
+					</thead>
+				<% for t in @ta do %>
+					<tbody>
+						<tr>
+							<td> <%= check_box_tag 'ta_ids[]', t.id %> </td>
+							<td> <a href= <%="#{teaching_assistant_path(t)}"%>> <%= t.first_name %> <%= t.last_name %> </a></td>
+							<td> <%= t.email %> </td>
+							<td> <%= text_for_validation_status(t.validated) %></td>
+						</tr>
+				<% end %>
+
+					<%= submit_tag "Validate" %>
+					<%= submit_tag "Invalidate" %>
+					<%= submit_tag "Delete" %>
+
+					</tbody>
+				</table>
+
 			<% end %>	
-			</tbody>
-		</table>
+
 		<% else %>
-			<p> NO tas FOUND </p>
+			<p> NO Teaching Assistants FOUND </p>
 		<% end %>
 	</div>
 </div>
