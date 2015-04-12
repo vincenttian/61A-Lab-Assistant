@@ -3,6 +3,8 @@ Feature: Verify Lab Assistant Sign up
     As a TA or Admin
     I want to confim Lab Assistant Sign ups
 
+Background: admin and LAs added to database
+    
     Given the following Lab Assistant exists:
     | first_name | last_name | email            | password | validated |
     | Alice1     | Assistant | labass1@test.com | password | false     |
@@ -15,15 +17,14 @@ Feature: Verify Lab Assistant Sign up
     | admin        | 1         | bigboss@test.com | password  |
 
     Scenario: Verification One Lab Assistant
-        # Given I am on the admin login page
-        # And I fill in "admin_email" with "bigboss@test.com"
-        # And I fill in "admin_password" with "password"
-        # And I press "Log in"
-        # Given I am on the admin dashboard page
-        # And I debug
-        # And I check "1"
-        # When I press "Validate"
-        # Then I should see a confirmation containing "Alice1"
+        Given I am on the admin login page
+        And I fill in "admin_email" with "bigboss@test.com"
+        And I fill in "admin_password" with "password"
+        And I press "Log in"
+        Given I am on the admin dashboard page
+        And I check Alices checkbox
+        When I press "Validate"
+        Then I should see a confirmation containing "Alice1"
 
     # Scenario: Verification of Multple Lab Assistatns
     #     Given I am on the verification page
@@ -32,12 +33,6 @@ Feature: Verify Lab Assistant Sign up
     #     When I press "Confirm Lab Assistants"
     #     Then I should see a confirmation containing "Bob2"
     #     And I should see a confirmation containing "Claire3"
-
-    # Scenario: Select All Lab Assistants
-    #     Given I am on the verification page
-    #     And I am a TA or I am a Admin
-    #     When I press "Select All"
-    #     Then all checkboxes should be checked
 
     # Scenario: Verify All Lab Assistants
     #     Given I am on the verification page

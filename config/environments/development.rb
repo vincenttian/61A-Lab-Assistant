@@ -10,7 +10,16 @@ Rails.application.configure do
   config.eager_load = false
 
   # fix password 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  # config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  :address              => "smtp.gmail.com",
+  :port                 => 587,
+  :domain               => 'mondomaine.com',
+  :user_name            => 'smtp@mondomaine.com',
+  :password             => 'mypassword',
+  :authentication       => 'plain',
+  :enable_starttls_auto => true  }
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
