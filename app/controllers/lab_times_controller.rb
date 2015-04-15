@@ -31,6 +31,13 @@ class LabTimesController < ApplicationController
   	redirect_to admin_dashboard_path
   end
 
+  def ta
+    ta = TeachingAssistant.find(params['teaching_assistant']['id'])
+    lt = LabTime.find(params['teaching_assistant']['lab_time_id'])
+    ta.lab_times << lt
+    redirect_to admin_dashboard_path
+  end
+
 
   def lt_params
   	params.require(:lab_time).permit(:open, :close, :day)

@@ -73,6 +73,9 @@
 			<table class="table table-hover table-striped">
 				<thead>
 					<tr>
+						<th> </th>
+						<th> Assign Teaching Assistant </th>
+						<th> Current Teaching Assistant(s) </th>
 						<th>Lab</th>
 						<th>Day</th>
 						<th>Beginning</th>
@@ -82,10 +85,25 @@
 				<tbody>
 					<% for t in @lt do %>
 						<tr>
-							<td> <%= t %> </td>
-							<td> <%= t.day.strftime("%A") %> </td>
-							<td> <%= t.open.strftime("%I:%M%p") %> </td>
-							<td> <%= t.close.strftime("%I:%M%p") %> </td>
+							<%= form_for [t, t.teaching_assistants.new], :url => lab_times_ta_path do |f| %>
+								<td>
+								  <input name="submit_ta" type="submit" value="Assign TA"/>
+								</td>
+								<td> 
+									<% options = options_from_collection_for_select(@la, 'id', 'email') %>
+								    <%= f.hidden_field :lab_time_id, :value => t.id %>
+									<%= f.select :id,  options, include_blank: true %>
+								</td>
+								<td> 
+									<% for ta in t.teaching_assistants.to_a do %>
+										<%= ta.email %>
+									<% end %>		
+								</td>
+								<td> <%= t.id %> </td>
+								<td> <%= t.day.strftime("%A") %> </td>
+								<td> <%= t.open.strftime("%I:%M%p") %> </td>
+								<td> <%= t.close.strftime("%I:%M%p") %> </td>
+							<% end %>
 						</tr>
 					<% end %>
 				</tbody>

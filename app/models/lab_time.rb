@@ -16,5 +16,5 @@ class LabTime < ActiveRecord::Base
 
   validates :open, presence: true
   validates :close, presence: true
-  validates :day, uniqueness: true
+  validates :day, presence: true
 end

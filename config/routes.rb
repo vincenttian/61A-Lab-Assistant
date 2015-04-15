@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :check_in_forms
   resources :lab_times
 
+  match 'lab_times/ta', to:'lab_times#ta', via: :post
   match 'admins/dashboard', to:'admins/dashboard#show', via: [:get, :post]
   match 'teaching_assistants/dashboard', to:'teaching_assistants/dashboard#show', via: [:get, :post]
 
