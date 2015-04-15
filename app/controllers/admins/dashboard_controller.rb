@@ -5,6 +5,7 @@ module Admins
     def show
       @la = LabAssistant.order("first_name ASC, last_name ASC, email ASC")
       @ta = TeachingAssistant.order("first_name ASC, last_name ASC, email ASC")
+      @lt = LabTime.all.to_a
 
       la_id = params[:la_to_change]
       if !la_id.nil?

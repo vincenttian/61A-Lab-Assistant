@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402234404) do
+ActiveRecord::Schema.define(version: 20150415023955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,30 @@ ActiveRecord::Schema.define(version: 20150402234404) do
   end
 
   add_index "lab_assistants", ["teaching_assistant_id"], name: "index_lab_assistants_on_teaching_assistant_id", using: :btree
+
+  create_table "lab_assistants_times", force: true do |t|
+    t.integer "lab_time_id"
+    t.integer "lab_assistant_id"
+  end
+
+  add_index "lab_assistants_times", ["lab_assistant_id"], name: "index_lab_assistants_times_on_lab_assistant_id", using: :btree
+  add_index "lab_assistants_times", ["lab_time_id"], name: "index_lab_assistants_times_on_lab_time_id", using: :btree
+
+  create_table "lab_times", force: true do |t|
+    t.time     "open"
+    t.time     "close"
+    t.date     "day"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lab_times_teaching_assistants", force: true do |t|
+    t.integer "lab_time_id"
+    t.integer "teaching_assistant_id"
+  end
+
+  add_index "lab_times_teaching_assistants", ["lab_time_id"], name: "index_lab_times_teaching_assistants_on_lab_time_id", using: :btree
+  add_index "lab_times_teaching_assistants", ["teaching_assistant_id"], name: "index_lab_times_teaching_assistants_on_teaching_assistant_id", using: :btree
 
   create_table "teaching_assistants", force: true do |t|
     t.string   "name"

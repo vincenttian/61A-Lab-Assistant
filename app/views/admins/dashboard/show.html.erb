@@ -63,11 +63,37 @@
 
 					</tbody>
 				</table>
-
 			<% end %>	
-
 		<% else %>
 			<p> NO Teaching Assistants FOUND </p>
 		<% end %>
+
+		<p> Lab Times: </p>
+		<% unless @lt.empty? %>
+			<table class="table table-hover table-striped">
+				<thead>
+					<tr>
+						<th>Lab</th>
+						<th>Day</th>
+						<th>Beginning</th>
+						<th>Ending</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for t in @lt do %>
+						<tr>
+							<td> <%= t %> </td>
+							<td> <%= t.day.strftime("%A") %> </td>
+							<td> <%= t.open.strftime("%I:%M%p") %> </td>
+							<td> <%= t.close.strftime("%I:%M%p") %> </td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		<% else %>
+			<p> NO Lab Times FOUND </p>
+		<% end %>
+
+
 	</div>
 </div>
