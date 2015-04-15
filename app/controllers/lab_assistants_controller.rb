@@ -22,8 +22,10 @@ class LabAssistantsController < ApplicationController
   def update
     if params['lt_ids']
       current_user.preferred_lab_times = params['lt_ids'].map(&:to_i)
-      current_user.save
+    else 
+      current_user.preferred_lab_times = []
     end
+    current_user.save
     redirect_to lab_assistants_dashboard_path
   end
 
