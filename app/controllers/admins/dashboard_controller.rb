@@ -6,6 +6,8 @@ module Admins
       @la = LabAssistant.order("first_name ASC, last_name ASC, email ASC")
       @ta = TeachingAssistant.order("first_name ASC, last_name ASC, email ASC")
       @lt = LabTime.all.to_a
+      @valid_las = LabAssistant.where("validated = ?", true)
+      @new_labtime = LabTime.new
 
       la_id = params[:la_to_change]
       if !la_id.nil?

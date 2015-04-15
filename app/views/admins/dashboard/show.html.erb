@@ -94,6 +94,20 @@
 			<p> NO Lab Times FOUND </p>
 		<% end %>
 
+		<%= form_for @new_labtime do |f|%>
+		  <%= f.select :day, ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] %>
+		  <p>
+		    beginning:
+		    <%= f.time_select :open, {:ampm => true} %>
+		  </p>
+		  <p>
+		    ending:
+		    <%= f.time_select :close, {:ampm => true} %>
+		  </p>
+		  
+		  <%= f.submit %>
+		<% end %>	
+
 
 	</div>
 </div>

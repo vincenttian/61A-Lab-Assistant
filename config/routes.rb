@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   resources :lab_assistants
   resources :teaching_assistants
   resources :check_in_forms
+  resources :lab_times
 
   match 'admins/dashboard', to:'admins/dashboard#show', via: [:get, :post]
   match 'teaching_assistants/dashboard', to:'teaching_assistants/dashboard#show', via: [:get, :post]
