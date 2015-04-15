@@ -90,7 +90,7 @@
 								  <input name="submit_ta" type="submit" value="Assign TA"/>
 								</td>
 								<td> 
-									<% options = options_from_collection_for_select(@la, 'id', 'email') %>
+									<% options = options_from_collection_for_select(@valid_tas, 'id', 'email') %>
 								    <%= f.hidden_field :lab_time_id, :value => t.id %>
 									<%= f.select :id,  options, include_blank: true %>
 								</td>
