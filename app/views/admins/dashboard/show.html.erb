@@ -63,11 +63,69 @@
 
 					</tbody>
 				</table>
-
 			<% end %>	
-
 		<% else %>
 			<p> NO Teaching Assistants FOUND </p>
 		<% end %>
+
+		<p> Lab Times: </p>
+		<% unless @lt.empty? %>
+			<table class="table table-hover table-striped">
+				<thead>
+					<tr>
+						<th> </th>
+						<th> Assign Teaching Assistant </th>
+						<th> Current Teaching Assistant(s) </th>
+						<th>Lab</th>
+						<th>Day</th>
+						<th>Beginning</th>
+						<th>Ending</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for t in @lt do %>
+						<tr>
+							<%= form_for [t, t.teaching_assistants.new], :url => lab_times_ta_path do |f| %>
+								<td>
+								  <input name="submit_ta" type="submit" value="Assign TA"/>
+								</td>
+								<td> 
+									<% options = options_from_collection_for_select(@la, 'id', 'email') %>
+								    <%= f.hidden_field :lab_time_id, :value => t.id %>
+									<%= f.select :id,  options, include_blank: true %>
+								</td>
+								<td> 
+									<% for ta in t.teaching_assistants.to_a do %>
+										<%= ta.email %>
+									<% end %>		
+								</td>
+								<td> <%= t.id %> </td>
+								<td> <%= t.day.strftime("%A") %> </td>
+								<td> <%= t.open.strftime("%I:%M%p") %> </td>
+								<td> <%= t.close.strftime("%I:%M%p") %> </td>
+							<% end %>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		<% else %>
+			<p> NO Lab Times FOUND </p>
+		<% end %>
+
+		<%= form_for @new_labtime do |f|%>
+		  <%= f.select :day, ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] %>
+		  <p>
+		    beginning:
+		    <%= f.time_select :open, {:ampm => true} %>
+		  </p>
+		  <p>
+		    ending:
+		    <%= f.time_select :close, {:ampm => true} %>
+		  </p>
+		  
+		  <%= f.submit %>
+		<% end %>	
+
+
 	</div>
 </div>

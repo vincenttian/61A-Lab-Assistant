@@ -15,6 +15,7 @@
 #  unlock_token           :string(255)
 #  first_name             :string(255)
 #  last_name              :string(255)
+#  validated              :boolean          default(FALSE)
 #
 
 require 'test_helper'

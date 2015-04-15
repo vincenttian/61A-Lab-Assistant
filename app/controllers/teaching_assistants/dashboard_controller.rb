@@ -6,6 +6,7 @@ module TeachingAssistants
     def show
       # @forms = CheckInForm.all
       @la = LabAssistant.order("first_name ASC, last_name ASC, email ASC")
+      @lt = current_user.lab_times
 
       la_id = params[:la_to_change]
 
