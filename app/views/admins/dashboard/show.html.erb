@@ -99,7 +99,7 @@
 										<%= ta.email %>
 									<% end %>		
 								</td>
-								<td> <%= t.id %> </td>
+								<td> <a href=<%= lab_time_path(t)%>> <%= t.id %> </a> </td>
 								<td> <%= t.day.strftime("%A") %> </td>
 								<td> <%= t.open.strftime("%I:%M%p") %> </td>
 								<td> <%= t.close.strftime("%I:%M%p") %> </td>

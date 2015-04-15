@@ -4,11 +4,11 @@
 #
 #  id                 :integer          not null, primary key
 #  name               :string(255)
-#  SID                :string(255)
-#  event              :integer
 #  created_at         :datetime
 #  updated_at         :datetime
 #  teaching_assistant :string(255)
+#  lab_time_id        :integer
+#  checkins           :integer          default([]), is an Array
 #
 
 require 'rails_helper'

@@ -14,6 +14,9 @@ class CheckInFormsController < ApplicationController
 
   def show
     @form = CheckInForm.find(params[:id])
+    lab_time = LabTime.find(@form.lab_time_id)
+    # below refers to all lab assistants that should be checking in
+    @las = lab_time.lab_assistants
   end
 
   def edit

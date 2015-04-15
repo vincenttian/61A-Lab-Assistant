@@ -28,6 +28,11 @@ class LabTimesController < ApplicationController
   	  @lt.day = days_of_week['Saturday']
   	end
   	@lt.save
+    # create check in forms for entire semester
+    1.upto(13) do |i|
+      c = CheckInForm.create(name: "Lab#{i}")
+      @lt.check_in_forms << c
+    end
   	redirect_to admin_dashboard_path
   end
 
@@ -41,6 +46,10 @@ class LabTimesController < ApplicationController
 
   def lt_params
   	params.require(:lab_time).permit(:open, :close, :day)
+  end
+
+  def show
+    @l = LabTime.find(params['id'])
   end
 
 end
