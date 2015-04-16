@@ -30,8 +30,8 @@ class CheckInFormsController < ApplicationController
       @form = CheckInForm.find(params[:check_in_form][:lab_time_id])
       if params[:check_in_form][:id] != ""
         la = LabAssistant.find(params[:check_in_form][:id])
-        if not @form.checkins.include? la 
-          @form.checkins << la
+        if not @form.checkins.include? la.id
+          @form.checkins = (@form.checkins.dup << la)
         end
         @form.save
       end

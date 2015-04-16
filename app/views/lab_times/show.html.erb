@@ -5,7 +5,7 @@ Lab Time <%= @l.id %>
 
 Assign Lab Assistant To Lab
 <p> 
-	<%= form_for @l, :url => lab_times_assign_la_path do |f| %>
+	<%= form_for @l do |f| %>
 	  <% options = options_from_collection_for_select(@las, 'id', 'email') %>
 	  <%= f.select :id,  options, include_blank: true %>
 	  <%= f.hidden_field :lab_time_id, :value => @l.id %>
