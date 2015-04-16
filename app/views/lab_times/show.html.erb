@@ -2,3 +2,23 @@ Lab Time <%= @l.id %>
 <%- for c in @l.check_in_forms %>
 	<p> <a href=<%= check_in_form_path(c) %> > <%= c.name %> Check In Form </a> </p>
 <% end %>
+
+Assign Lab Assistant To Lab
+<p> 
+	<%= form_for @l, :url => lab_times_assign_la_path do |f| %>
+	  <% options = options_from_collection_for_select(@las, 'id', 'email') %>
+	  <%= f.select :id,  options, include_blank: true %>
+	  <%= f.hidden_field :lab_time_id, :value => @l.id %>
+      <input name="assign_la" type="submit" value="Assign LA"/>
+	<% end %>
+</p>
+
+Current Lab Assistants:
+
+<% unless @curr_las.empty? %>
+	<%- for c in @curr_las %>
+		<p> <%= c.email %> </p>
+	<% end %>
+<% else %>
+	<p> No Lab Assistants Assiegned to Lab Yet </p>
+<% end %>

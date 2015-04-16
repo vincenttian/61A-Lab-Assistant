@@ -3,7 +3,23 @@
 <%= @form.name %>
 <br>
 <% for l in @las %> 
-	<%= l %>
+	<%= l.email %>
 <% end %>
 <br>
+
+<p> 
+	<%= form_for @form do |f| %>
+	  <% options = options_from_collection_for_select(@las, 'id', 'email') %>
+	  <%= f.select :id,  options, include_blank: true %>
+	  <%= f.hidden_field :lab_time_id, :value => @form.id %>
+	  <%= f.hidden_field :check_in, :value => true %>
+      <input name="check_in_la" type="submit" value="Check In"/>
+	<% end %>
+</p>
+
+<p> Checked In Lab Assistants: </p>
+<% for c in @checkins %> 
+	<p> <%= LabAssistant.find(c).email %> </p>
+<% end %>
+
 <%= link_to 'Edit this form', edit_check_in_form_path %>
