@@ -50,6 +50,20 @@ class LabTimesController < ApplicationController
 
   def show
     @l = LabTime.find(params['id'])
+    @las = LabAssistant.where("validated = ?", true)
+    @curr_las = @l.lab_assistants
+  end
+
+  # assigns lab assistants
+  def update
+    lt = LabTime.find(params['lab_time']['lab_time_id'])
+    if params['lab_time']['id'] != ""
+      la = LabAssistant.find(params['lab_time']['id'])
+      if not lt.lab_assistants.include? la
+        lt.lab_assistants << la
+      end
+    end
+    redirect_to lab_time_path(lt)
   end
 
 end
