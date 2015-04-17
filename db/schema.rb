@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150415225520) do
+ActiveRecord::Schema.define(version: 20150417034426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,23 @@ ActiveRecord::Schema.define(version: 20150415225520) do
   end
 
   add_index "check_in_forms", ["lab_time_id"], name: "index_check_in_forms_on_lab_time_id", using: :btree
+
+  create_table "contracts", force: true do |t|
+    t.integer  "lab_assistant_id"
+    t.string   "email_address"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "student_id"
+    t.string   "times_assisted"
+    t.string   "units"
+    t.string   "lab_assisting_rules"
+    t.string   "conditions_to_view_anothers_code"
+    t.string   "abide_by_rules"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contracts", ["lab_assistant_id"], name: "index_contracts_on_lab_assistant_id", using: :btree
 
   create_table "lab_assistants", force: true do |t|
     t.string   "name"
