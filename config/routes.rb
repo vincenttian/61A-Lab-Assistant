@@ -35,4 +35,7 @@ Rails.application.routes.draw do
   match 'admins/dashboard', to:'admins/dashboard#show', via: [:get, :post]
   match 'teaching_assistants/dashboard', to:'teaching_assistants/dashboard#show', via: [:get, :post]
 
+  match 'lab_assistants/contract/sign_up', to: 'lab_assistants#new_contract', via: :get
+  match 'lab_assistants/contract/sign_up', to: 'lab_assistants#create_contract', via: :post
+
 end

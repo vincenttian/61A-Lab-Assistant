@@ -28,6 +28,8 @@ class LabAssistant < ActiveRecord::Base
   belongs_to :teaching_assistant
   has_and_belongs_to_many :lab_times
 
+  has_one :contract
+
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, uniqueness: true
