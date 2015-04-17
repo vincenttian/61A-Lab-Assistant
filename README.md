@@ -14,7 +14,6 @@ CS169 Lab Assistant Project
 
 
 
-
 Quinton Dang
 Brian Ha
 Youri Park

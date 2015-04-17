@@ -4,7 +4,6 @@ Given /the following admin exists/ do |admin_table|
   end
 end
 
-
 Then(/^I should see 'Invalid login' on the page$/) do
   page.html.index("Invalid email address or password").should > 0
 end

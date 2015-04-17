@@ -37,12 +37,31 @@ ActiveRecord::Schema.define(version: 20150417042730) do
 
   create_table "check_in_forms", force: true do |t|
     t.string   "name"
-    t.string   "SID"
-    t.integer  "event"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "teaching_assistant"
+    t.integer  "lab_time_id"
+    t.integer  "checkins",           default: [], array: true
   end
+
+  add_index "check_in_forms", ["lab_time_id"], name: "index_check_in_forms_on_lab_time_id", using: :btree
+
+  create_table "contracts", force: true do |t|
+    t.integer  "lab_assistant_id"
+    t.string   "email_address"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "student_id"
+    t.string   "times_assisted"
+    t.string   "units"
+    t.string   "lab_assisting_rules"
+    t.string   "conditions_to_view_anothers_code"
+    t.string   "abide_by_rules"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "contracts", ["lab_assistant_id"], name: "index_contracts_on_lab_assistant_id", using: :btree
 
   create_table "lab_assistants", force: true do |t|
     t.string   "name"
@@ -63,9 +82,33 @@ ActiveRecord::Schema.define(version: 20150417042730) do
     t.string   "last_sign_in_ip"
     t.boolean  "validated",              default: false
     t.string   "SID"
-  end
+    t.integer  "preferred_lab_times",    default: [],                 array: true
 
   add_index "lab_assistants", ["teaching_assistant_id"], name: "index_lab_assistants_on_teaching_assistant_id", using: :btree
+
+  create_table "lab_assistants_times", force: true do |t|
+    t.integer "lab_time_id"
+    t.integer "lab_assistant_id"
+  end
+
+  add_index "lab_assistants_times", ["lab_assistant_id"], name: "index_lab_assistants_times_on_lab_assistant_id", using: :btree
+  add_index "lab_assistants_times", ["lab_time_id"], name: "index_lab_assistants_times_on_lab_time_id", using: :btree
+
+  create_table "lab_times", force: true do |t|
+    t.time     "open"
+    t.time     "close"
+    t.date     "day"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lab_times_teaching_assistants", force: true do |t|
+    t.integer "lab_time_id"
+    t.integer "teaching_assistant_id"
+  end
+
+  add_index "lab_times_teaching_assistants", ["lab_time_id"], name: "index_lab_times_teaching_assistants_on_lab_time_id", using: :btree
+  add_index "lab_times_teaching_assistants", ["teaching_assistant_id"], name: "index_lab_times_teaching_assistants_on_teaching_assistant_id", using: :btree
 
   create_table "teaching_assistants", force: true do |t|
     t.string   "name"

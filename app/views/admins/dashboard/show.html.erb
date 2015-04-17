@@ -1,61 +1,131 @@
-<div class="row">    
-	<br>
-	<h2 align="center"> Admin Dashboard Stuff</h2>
-	<p>Lab Assistants</p>
-	<% unless @la.empty? %>
-		<%= form_tag admin_dashboard_path do %>
-			<table>
-				<tr>
-					<th></th>
-					<th>Full Name</th>
-					<th>Email</th>
-					<th>Validation Status</th>
-				</tr>
-			<% for l in @la do %>
-				<tr>
-					<td> <%= check_box_tag 'la_ids[]', l.id %> </td>
-					<td> <a href= <%="#{lab_assistant_path(l)}"%>> <%= l.first_name %> </a></td>
-					<td> <%= l.email %> </td>
-					<td> <%= text_for_validation_status(l.validated) %></td>
-				</tr>
+<div class="container">
+	<div class="row">    
+		<br>
+		<h2 align="center"> Admin Dashboard Stuff</h2>
+		<p>Lab Assistants</p>
+		<% unless @la.empty? %>
+			<%= form_tag admin_dashboard_path do %>
+				<table class="table table-hover table-striped">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Full Name</th>
+							<th>Email</th>
+							<th>Validation Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% for l in @la do %>
+							<tr>
+								<td> <%= check_box_tag 'la_ids[]', l.id %> </td> 
+								<td> <a href= <%="#{lab_assistant_path(l)}"%>> <%= l.first_name %> <%=l.last_name %> </a></td>
+								<td> <%= l.email %> </td>
+								<td> <%= text_for_validation_status(l.validated) %></td>
+							</tr>
+						<% end %>
+
+
+					<%= submit_tag "Validate" %>
+					<%= submit_tag "Invalidate" %>
+					<%= submit_tag "Delete" %>
+
+					</tbody>
+				</table>
 			<% end %>
-		</table>
-
-		<%= submit_tag "Validate" %>
-		<%= submit_tag "Invalidate" %>
-		<%= submit_tag "Delete" %>
-
+		<% else %>
+			<p> NO Lab Assistants FOUND </p>
 		<% end %>
-	<% else %>
-		<p> NO Lab Assistants FOUND </p>
-	<% end %>
-	<p>Teaching Assistants</p>
-	<% unless @ta.empty? %>
-		<%= form_tag admin_dashboard_path do %>
-			<table>
-				<tr>
-					<th></th>
-					<th>Full Name</th>
-					<th>Email</th>
-					<th>Validation Status</th>
-				</tr>
-			<% for t in @ta do %>
-				<tr>
-					<td> <%= check_box_tag 'ta_ids[]', t.id %> </td>
-					<td> <a href= <%="#{teaching_assistant_path(t)}"%>> <%= t.first_name %> </a></td>
-					<td> <%= t.email %> </td>
-					<td> <%= text_for_validation_status(t.validated) %></td>
-				</tr>
-			<% end %>
-		</table>
+		<p>Teaching Assistants</p>
+		<% unless @ta.empty? %>
+			<%= form_tag admin_dashboard_path do %>
+				<table class="table table-hover table-striped">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Full Name</th>
+							<th>Email</th>
+							<th>Validation Status</th>
+						</tr>
+					</thead>
+				<% for t in @ta do %>
+					<tbody>
+						<tr>
+							<td> <%= check_box_tag 'ta_ids[]', t.id %> </td>
+							<td> <a href= <%="#{teaching_assistant_path(t)}"%>> <%= t.first_name %> <%= t.last_name %> </a></td>
+							<td> <%= t.email %> </td>
+							<td> <%= text_for_validation_status(t.validated) %></td>
+						</tr>
+				<% end %>
 
-		<%= submit_tag "Validate" %>
-		<%= submit_tag "Invalidate" %>
-		<%= submit_tag "Delete" %>
+					<%= submit_tag "Validate" %>
+					<%= submit_tag "Invalidate" %>
+					<%= submit_tag "Delete" %>
 
+					</tbody>
+				</table>
+			<% end %>	
+		<% else %>
+			<p> NO Teaching Assistants FOUND </p>
+		<% end %>
+
+		<p> Lab Times: </p>
+		<% unless @lt.empty? %>
+			<table class="table table-hover table-striped">
+				<thead>
+					<tr>
+						<th> </th>
+						<th> Assign Teaching Assistant </th>
+						<th> Current Teaching Assistant(s) </th>
+						<th>Lab</th>
+						<th>Day</th>
+						<th>Beginning</th>
+						<th>Ending</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for t in @lt do %>
+						<tr>
+							<%= form_for [t, t.teaching_assistants.new], :url => lab_times_ta_path do |f| %>
+								<td>
+								  <input name="submit_ta" type="submit" value="Assign TA"/>
+								</td>
+								<td> 
+									<% options = options_from_collection_for_select(@valid_tas, 'id', 'email') %>
+								    <%= f.hidden_field :lab_time_id, :value => t.id %>
+									<%= f.select :id,  options, include_blank: true %>
+								</td>
+								<td> 
+									<% for ta in t.teaching_assistants.to_a do %>
+										<%= ta.email %>
+									<% end %>		
+								</td>
+								<td> <a href=<%= lab_time_path(t)%>> <%= t.id %> </a> </td>
+								<td> <%= t.day.strftime("%A") %> </td>
+								<td> <%= t.open.strftime("%I:%M%p") %> </td>
+								<td> <%= t.close.strftime("%I:%M%p") %> </td>
+							<% end %>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		<% else %>
+			<p> NO Lab Times FOUND </p>
+		<% end %>
+
+		<%= form_for @new_labtime do |f|%>
+		  <%= f.select :day, ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] %>
+		  <p>
+		    beginning:
+		    <%= f.time_select :open, {:ampm => true} %>
+		  </p>
+		  <p>
+		    ending:
+		    <%= f.time_select :close, {:ampm => true} %>
+		  </p>
+		  
+		  <%= f.submit %>
 		<% end %>	
 
-	<% else %>
-		<p> NO Teaching Assistants FOUND </p>
-	<% end %>
+
+	</div>
 </div>

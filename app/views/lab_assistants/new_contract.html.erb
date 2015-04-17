@@ -1,0 +1,53 @@
+<h1> CS 61A Spring 2015 Lab Assistant Contract </h1>
+
+<p> If you're lab assisting for CS 61A Spring 2015, you're expected to read this carefully and agree to this contract. 
+<br>
+The rules for lab assisting are detailed <a href="http://www.ocf.berkeley.edu/~shidi/cs61a/la_training_notes.txt"> here </a> (http://www.ocf.berkeley.edu/~shidi/cs61a/la_training_notes.txt). 
+</p>
+
+<%= form_for(@new_contract, url: lab_assistants_contract_sign_up_path) do |f| %>
+    <%= label_tag(:email_address, "Berkeley Email Address:") %>
+    <%= f.text_field :email_address, autofocus: true, placeholder: "example@berkeley.edu".html_safe %> 
+    <br> <br>
+
+  <%= label_tag(:first_name, "First Name:") %>
+  <%= f.text_field :first_name, placeholder: "First Middle".html_safe %>
+  <br> <br>
+
+  <%= label_tag(:last_name, "Last Name:") %>
+  <%= f.text_field :last_name, placeholder: "Last".html_safe %>
+  <br> <br>
+
+  <%= label_tag(:student_id, "SID") %>
+  <%= f.text_field :student_id, placeholder: "On Cal ID Card".html_safe %>
+  <br> <br>
+
+  <%= label_tag(:times_assisted, "How many times have you lab assisted for 61A?") %>
+  <%= f.text_field :times_assisted, placeholder: "ex. 3".html_safe %>
+  <br> <br>
+
+  <%= label_tag(:units, "I am lab assisting for X units") %>
+  <p> this will be reflected on Telebears, if applicable. 
+  <br>If you are lab assisting for 0 units, you should not be enrolled in Telebears.
+  </p>
+  <%= f.select :units, options_for_select(["0", "1", "2", "3", "4"], "0") %>
+  <br> <br>
+
+  <%= label_tag(:lab_assisting_rules, "What are the four rules of lab assisting?") %>
+  <p> Please list them in order </p>
+  <%= f.text_area(:lab_assisting_rules, size: "100x6") %>
+  <br> <br>
+
+  <%= label_tag(:conditions_to_view_anothers_code, "In what context is it okay for one student to look at another student's code?") %>
+  <p> We're looking for specific things, check the notes if you don't recall </p>
+  <%= f.text_area(:conditions_to_view_anothers_code, size: "100x6") %>
+  <br> <br>
+
+  <%= label_tag(:abide_by_rules, "I agree to abide by the rules and expectations set forth for CS 61A Spring 2015 lab assistants.") %>
+  <br>
+  <%= f.text_field(:abide_by_rules, placeholder: "your name here".html_safe) %> 
+  <br> <br>
+
+  <%= f.submit("Submit") %>
+
+<% end %>

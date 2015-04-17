@@ -17,6 +17,10 @@ class CheckInFormsController < ApplicationController
 
   def show
     @form = CheckInForm.find(params[:id])
+    lab_time = LabTime.find(@form.lab_time_id)
+    # below refers to all lab assistants that should be checking in
+    @las = lab_time.lab_assistants
+    @checkins = @form.checkins
   end
 
   def edit
@@ -24,9 +28,22 @@ class CheckInFormsController < ApplicationController
   end
 
   def update
-    @form = CheckInForm.find(params[:id])
-    @form.update_attributes(check_in_form_params)
-    redirect_to check_in_form_path @form
+    # handle check ins
+    if params[:check_in_form][:check_in]
+      @form = CheckInForm.find(params[:check_in_form][:lab_time_id])
+      if params[:check_in_form][:id] != ""
+        la = LabAssistant.find(params[:check_in_form][:id])
+        if not @form.checkins.include? la.id
+          @form.checkins = (@form.checkins.dup << la)
+        end
+        @form.save
+      end
+      redirect_to check_in_form_path @form
+    else
+      @form = CheckInForm.find(params[:id])
+      @form.update_attributes(check_in_form_params)
+      redirect_to check_in_form_path @form
+    end
   end
 
   def destroy

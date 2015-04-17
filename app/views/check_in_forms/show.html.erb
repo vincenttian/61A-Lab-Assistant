@@ -1,26 +1,26 @@
-<div class="home-banner" align="center">
-  <h1>Check-In Details</h1>
-</div>
+<h1>Showing Check In Form Details</h1>
+<h3>Name</h3>
+<%= @form.name %>
+<br>
+<p> Current Lab Assistants: </p>
+<% for l in @las %> 
+	<%= l.email %>
+<% end %>
+<br>
 
-<div align="center">
-  <h3>Name</h3>
-  <%= @form.name %>
-  <h3>SID</h3>
-  <%= @form.SID %>
-  <h3>Event</h3>
-  <%= @form.event %>
-  <h3>TA</h3>
-  <%= @form.teaching_assistant %>
-  <br>
-  <br>
+<p> 
+	<%= form_for @form do |f| %>
+	  <% options = options_from_collection_for_select(@las, 'id', 'email') %>
+	  <%= f.select :id,  options, include_blank: true %>
+	  <%= f.hidden_field :lab_time_id, :value => @form.id %>
+	  <%= f.hidden_field :check_in, :value => true %>
+      <input name="check_in_la" type="submit" value="Check In"/>
+	<% end %>
+</p>
 
-  <%= link_to 'Check-In Another Lab Assistant', new_check_in_form_path %>
-  <br>
-  <%= link_to 'Edit This Check-In', edit_check_in_form_path %>
-  <br>
-  <%= link_to 'Delete This Check-In', check_in_form_path, :method => :delete %>
-  <br>
-  <br>
-  <%= link_to 'Back to Dashboard', teaching_assistants_dashboard_path %>
-  <br>
-</div>
+<p> Checked In Lab Assistants: </p>
+<% for c in @checkins %> 
+	<p> <%= LabAssistant.find(c).email %> </p>
+<% end %>
+
+<%= link_to 'Edit this form', edit_check_in_form_path %>
