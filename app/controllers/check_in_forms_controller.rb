@@ -4,6 +4,7 @@ class CheckInFormsController < ApplicationController
 
   def create
     @form = CheckInForm.new(check_in_form_params)
+    @form.teaching_assistant = TeachingAssistant.find_by_id(current_user.id).name
     if @form.save
       flash[:notice] = "Thank you for checking in!"
       redirect_to check_in_form_path @form
