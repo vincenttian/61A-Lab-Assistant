@@ -34,10 +34,14 @@ class LabAssistantsController < ApplicationController
   end
 
   def create_contract
-    la = LabAssistant.new
-    la.first_name = contract_params[:first_name]
-    la.last_name = contract_params[:last_name]
-    la.email = contract_params[:email_address]
+    la = LabAssistant.find_by_email(contract_params[:email_address])
+
+    if la.nil?
+      la = LabAssistant.new
+      la.first_name = contract_params[:first_name]
+      la.last_name = contract_params[:last_name]
+      la.email = contract_params[:email_address]
+    end
 
     if la.valid?
       contract = la.build_contract(contract_params)
