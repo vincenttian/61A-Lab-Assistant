@@ -23,6 +23,8 @@ module NavigationHelpers
       '/admins/dashboard'
     when /^the verification page$/
       '/admins/dashboard'
+    when /^the contract form page$/
+      '/lab_assistants/contract/sign_up'
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
