@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 20150418064011) do
     t.integer  "event"
   end
 
+  add_index "check_in_forms", ["lab_time_id"], name: "index_check_in_forms_on_lab_time_id", using: :btree
+
   create_table "contracts", force: true do |t|
     t.integer  "lab_assistant_id"
     t.string   "email_address"
@@ -79,7 +81,6 @@ ActiveRecord::Schema.define(version: 20150418064011) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.boolean  "validated",              default: false
-    t.string   "SID"
     t.integer  "preferred_lab_times",    default: [],                 array: true
   end
 
