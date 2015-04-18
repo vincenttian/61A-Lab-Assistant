@@ -2,6 +2,7 @@
 	<div class="row">    
 		<br>
 		<h2 align="center"> Teaching Assistant Dashboard Stuff</h2>
+		<a href= <%="#{new_check_in_form_path}"%>> Check In Here </a>
 		<p>Lab Assistants</p>
 		<% unless @la.empty? %>
 			<%= form_tag teaching_assistants_dashboard_path do %>

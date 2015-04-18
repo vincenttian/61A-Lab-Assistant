@@ -4,20 +4,19 @@ class CheckInFormsController < ApplicationController
 
   def create
     @form = CheckInForm.new(check_in_form_params)
+    @form.teaching_assistant = TeachingAssistant.find_by_id(current_user.id).name
     if @form.save
+      flash[:notice] = "Thank you for checking in!"
       redirect_to check_in_form_path @form
     else  
       # flash message
+      flash[:error] = "Couldn't process check-in, try again!"
       render new_check_in_form_path
     end
   end
 
   def show
     @form = CheckInForm.find(params[:id])
-    lab_time = LabTime.find(@form.lab_time_id)
-    # below refers to all lab assistants that should be checking in
-    @las = lab_time.lab_assistants
-    @checkins = @form.checkins
   end
 
   def edit
