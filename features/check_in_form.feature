@@ -58,3 +58,35 @@ Background: admin and LAs added to database
         And I fill in "check_in_form_SID" with "123456"
         And I press "Check-In"
         Then I should see "Lab Assistant Check-In"
+
+    Scenario: Edit Check-In
+        Given I am on the teaching assistant login page
+        And I fill in "teaching_assistant_email" with "bigboss@test.com"
+        And I fill in "teaching_assistant_password" with "password"
+        And I press "Log in"
+        Given I am on the teaching assistant dashboard page
+        And I follow "Check In Here"
+        Then I should see "Lab Assistant Check-In"
+        And I fill in "check_in_form_name" with "Youri"
+        And I fill in "check_in_form_SID" with "123456"
+        And I choose "check_in_form_event_office_hours"
+        And I press "Check-In"
+        And I follow "Edit this form"
+        And I fill in "check_in_form_name" with "Youray"
+        And I press "Update"
+        Then I should see "Youray"
+
+    Scenario: Delete Check-In
+        Given I am on the teaching assistant login page
+        And I fill in "teaching_assistant_email" with "bigboss@test.com"
+        And I fill in "teaching_assistant_password" with "password"
+        And I press "Log in"
+        Given I am on the teaching assistant dashboard page
+        And I follow "Check In Here"
+        Then I should see "Lab Assistant Check-In"
+        And I fill in "check_in_form_name" with "Youri"
+        And I fill in "check_in_form_SID" with "123456"
+        And I choose "check_in_form_event_office_hours"
+        And I press "Check-In"
+        And I follow "Delete This Check-In"
+        Then I should see "Teaching Assistant Dashboard"

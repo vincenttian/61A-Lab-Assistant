@@ -4,7 +4,7 @@ class CheckInFormsController < ApplicationController
 
   def create
     @form = CheckInForm.new(check_in_form_params)
-    @form.teaching_assistant = TeachingAssistant.find_by_id(current_user.id).name
+    @form.teaching_assistant = TeachingAssistant.find_by_id(current_user.id).to_s
     if @form.save
       flash[:notice] = "Thank you for checking in!"
       redirect_to check_in_form_path @form
@@ -24,22 +24,9 @@ class CheckInFormsController < ApplicationController
   end
 
   def update
-    # handle check ins
-    if params[:check_in_form][:check_in]
-      @form = CheckInForm.find(params[:check_in_form][:lab_time_id])
-      if params[:check_in_form][:id] != ""
-        la = LabAssistant.find(params[:check_in_form][:id])
-        if not @form.checkins.include? la.id
-          @form.checkins = (@form.checkins.dup << la)
-        end
-        @form.save
-      end
-      redirect_to check_in_form_path @form
-    else
-      @form = CheckInForm.find(params[:id])
-      @form.update_attributes(check_in_form_params)
-      redirect_to check_in_form_path @form
-    end
+    @form = CheckInForm.find(params[:id])
+    @form.update_attributes(check_in_form_params)
+    redirect_to check_in_form_path @form
   end
 
   def destroy
