@@ -1,8 +1,27 @@
-<h1> Our Form to Create a Check In Form </h1>
-
-<%= form_for CheckInForm.new, url: {action: "create"} do |f| %>
-  Name: <%= f.text_field :name %>
-  SID: <%= f.text_field :SID %>
-  Event: <%= f.text_field :event %>
-  <%= f.submit "Create" %>
-<% end %>
+<div class="home-banner" align="center">
+  <h1> CS61A Lab Assistant Check-In </h1>
+</div>
+ 		 
+<div align="center">
+  <%= form_for CheckInForm.new, url: {action: "create"} do |f| %>
+    Name: <%= f.text_field :name %>
+    <br><br>
+    SID: <%= f.text_field :SID %>
+    <br><br>
+    What are you checking in for:
+    <br>
+    <%= f.radio_button(:event, "lab") %>
+    <%= f.label(:event_lab, "Lab") %>
+    <br>
+    <%= f.radio_button(:event, "office_hours") %>
+    <%= f.label(:event_office_hours, "Office Hours") %>
+    <br>
+    <%= f.radio_button(:event, "guerilla_section") %>
+    <%= f.label(:event_guerilla_section, "Guerilla Section") %>
+    <br>
+    <%= f.radio_button(:event, "homework_party") %>
+    <%= f.label(:event_homework_party, "Homework/Project Party") %>
+    <br><br>
+    <%= f.submit "Check-In" %>
+  <% end %>
+</div>
