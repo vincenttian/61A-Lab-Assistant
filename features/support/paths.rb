@@ -23,6 +23,10 @@ module NavigationHelpers
       '/admins/dashboard'
     when /^the verification page$/
       '/admins/dashboard'
+    when /^the teaching assistant login page$/
+      '/teaching_assistants/sign_in'
+    when /^the teaching assistant dashboard page$/
+      '/teaching_assistants/dashboard'
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
