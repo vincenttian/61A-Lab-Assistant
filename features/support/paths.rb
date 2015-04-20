@@ -17,10 +17,14 @@ module NavigationHelpers
       '/'
     when /^the admin login page$/
       '/admins/sign_in'
+    when /^the la login page$/
+      '/lab_assistants/sign_in'
     when /^the forgot password page$/
       '/admins/password/new'
     when /^the admin dashboard page$/
       '/admins/dashboard'
+    when /^the la dashboard page$/
+      '/lab_assistants/dashboard'
     when /^the verification page$/
       '/admins/dashboard'
     when /^the teaching assistant login page$/
