@@ -1,6 +1,6 @@
 Given /the following Lab Assistant exists/ do |la_table|
   la_table.hashes.each do |la|
-    a = LabAssistant.create(first_name: la['first_name'], last_name: la['last_name'], email: la['email'], password: la['password'])
+    a = LabAssistant.create(first_name: la['first_name'], last_name: la['last_name'], email: la['email'], password: la['password'], validated: la['validated'])
   end
 end
 
