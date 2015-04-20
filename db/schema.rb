@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150417034426) do
+ActiveRecord::Schema.define(version: 20150420043401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,11 +40,9 @@ ActiveRecord::Schema.define(version: 20150417034426) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "teaching_assistant"
-    t.integer  "lab_time_id"
-    t.integer  "checkins",           default: [], array: true
+    t.string   "SID"
+    t.integer  "event"
   end
-
-  add_index "check_in_forms", ["lab_time_id"], name: "index_check_in_forms_on_lab_time_id", using: :btree
 
   create_table "contracts", force: true do |t|
     t.integer  "lab_assistant_id"
