@@ -42,6 +42,7 @@ module Admins
             else
               la.lab_times << l
               la.save
+              break
             end
           end
         end
