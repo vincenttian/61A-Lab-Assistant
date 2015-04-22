@@ -28,11 +28,6 @@ class LabTimesController < ApplicationController
   	  @lt.day = days_of_week['Saturday']
   	end
   	@lt.save
-    # create check in forms for entire semester
-    1.upto(13) do |i|
-      c = CheckInForm.create(name: "Lab#{i}")
-      @lt.check_in_forms << c
-    end
   	redirect_to admin_dashboard_path
   end
 
