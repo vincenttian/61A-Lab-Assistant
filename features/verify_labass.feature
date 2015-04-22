@@ -6,11 +6,11 @@ Feature: Verify Lab Assistant Sign up
 Background: admin and LAs added to database
     
     Given the following Lab Assistant exists:
-    | first_name | last_name | email            | password | validated |
-    | Alice1     | Assistant | labass1@test.com | password | false     |
-    | Bob2       | Assistant | labass2@test.com | password | false     |
-    | Claire3    | Assistant | labass3@test.com | password | false     |
-    | Dylan4     | Assistant | labass4@test.com | password | false     |
+    | first_name | last_name | email            | password | validated | SID      |
+    | Alice1     | Assistant | labass1@test.com | password | false     | 12345670 |
+    | Bob2       | Assistant | labass2@test.com | password | false     | 12345671 |
+    | Claire3    | Assistant | labass3@test.com | password | false     | 12345672 |
+    | Dylan4     | Assistant | labass4@test.com | password | false     | 12345673 |
 
     Given the following admin exists:
     | first_name   | last_name | email            | password  |

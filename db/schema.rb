@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150420043401) do
+ActiveRecord::Schema.define(version: 20150422062410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20150420043401) do
     t.string   "last_sign_in_ip"
     t.boolean  "validated",              default: false
     t.integer  "preferred_lab_times",    default: [],                 array: true
+    t.integer  "SID"
   end
 
   add_index "lab_assistants", ["teaching_assistant_id"], name: "index_lab_assistants_on_teaching_assistant_id", using: :btree

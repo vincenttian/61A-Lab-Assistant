@@ -21,6 +21,7 @@
 #  last_sign_in_ip        :string(255)
 #  validated              :boolean          default(FALSE)
 #  preferred_lab_times    :integer          default([]), is an Array
+#  SID                    :integer
 #
 
 class LabAssistant < ActiveRecord::Base
@@ -33,4 +34,6 @@ class LabAssistant < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, uniqueness: true
+  validates :SID, uniqueness: true
+  validates :SID, length: {is: 8}
 end

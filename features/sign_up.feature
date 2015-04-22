@@ -43,6 +43,7 @@ Feature: Lab Assistant sign up
         And I fill in "lab_assistant_first_name" with "Alice"
         And I fill in "lab_assistant_last_name" with "Smith"
         And I fill in "lab_assistant_email" with "test@test123.com"
+        And I fill in "lab_assistant_SID" with "12345678"
         And I press "Create Lab assistant"
         Then I should see a confirmation
         When I follow "LA Login"

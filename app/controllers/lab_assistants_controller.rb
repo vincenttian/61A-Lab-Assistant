@@ -15,7 +15,7 @@ class LabAssistantsController < ApplicationController
   end
 
   def la_params
-  	params.require(:lab_assistant).permit(:first_name, :last_name, :email)
+  	params.require(:lab_assistant).permit(:first_name, :last_name, :email, :SID)
   end
 
   # for submitting lab preferences for LabAssistants
@@ -35,12 +35,12 @@ class LabAssistantsController < ApplicationController
 
   def create_contract
     la = LabAssistant.find_by_email(contract_params[:email_address])
-
     if la.nil?
       la = LabAssistant.new
       la.first_name = contract_params[:first_name]
       la.last_name = contract_params[:last_name]
       la.email = contract_params[:email_address]
+      la.SID = contract_params[:student_id]
     end
 
     if la.valid?

@@ -28,7 +28,7 @@ class LabTimesController < ApplicationController
   	  @lt.day = days_of_week['Saturday']
   	end
   	@lt.save
-        redirect_to admin_dashboard_path
+  	redirect_to admin_dashboard_path
   end
 
   def ta

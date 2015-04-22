@@ -7,8 +7,8 @@ Feature: Lab Assistant Contract Form
 Background: admin and LAs added to database
 
     Given the following Lab Assistant exists:
-    | first_name | last_name | email            | password | validated |
-    | Alice1     | Assistant | labass1@test.com | password | false     |
+    | first_name | last_name | email            | password | validated | SID      |
+    | Alice1     | Assistant | labass1@test.com | password | false     | 12345671 |
 
     Given the following admin exists:
     | first_name   | last_name | email            | password  |
@@ -20,6 +20,7 @@ Background: admin and LAs added to database
         And I fill in "contract_first_name" with "Alice1"
         And I fill in "contract_last_name" with "Assistant"
         And I fill in "contract_times_assisted" with "1"
+        And I fill in "contract_student_id" with "12345678"
         And I fill in "contract_abide_by_rules" with "Alice1 Assistant"
         And I press "Submit"
         Then I should see a contract form confirmation
@@ -37,6 +38,7 @@ Background: admin and LAs added to database
         And I fill in "contract_first_name" with "Alice2"
         And I fill in "contract_last_name" with "Assistant"
         And I fill in "contract_times_assisted" with "1"
+        And I fill in "contract_student_id" with "12345678"
         And I fill in "contract_abide_by_rules" with "Alice2 Assistant"
         And I press "Submit"
         Then I should see a contract form confirmation
