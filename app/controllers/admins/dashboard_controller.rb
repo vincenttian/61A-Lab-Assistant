@@ -29,7 +29,15 @@ module Admins
     end
 
     def match
-      1/0
+      las = LabAssistant.where('preferred_lab_times!=?', []).order(preferred_lab_times: :asc)
+      las.to_a.each do |la|
+        lab_times = la.preferred_lab_times
+        randomly_assigned = la.preferred_lab_times.shuffle.pop
+        ran_lab_time = LabTime.find(randomly_assigned)
+        la.lab_times << ran_lab_time
+        la.save
+      end
+      redirect_to admins_dashboard_path
     end
 
     private
