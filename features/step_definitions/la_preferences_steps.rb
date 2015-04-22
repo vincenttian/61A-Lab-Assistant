@@ -9,8 +9,8 @@ Given /the following lab times exists/ do |la_table|
     "Sunday" => Date.new(2000, 1, 2)
   }
   la_table.hashes.each do |la|
-    a = LabTime.create(open: Time.parse(la['open']), close: Time.parse(la['close']), day: days_of_week[la['day']])
-  end  
+    a = LabTime.create(open: Time.parse(la['open']), close: Time.parse(la['close']), day: days_of_week[la['day']], id: la_table['id'])
+  end
 end
 
 Given /I check all lab time checkboxes/ do

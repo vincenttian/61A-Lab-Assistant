@@ -33,6 +33,8 @@ module NavigationHelpers
       '/teaching_assistants/dashboard'
     when /^the contract form page$/
       '/lab_assistants/contract/sign_up'
+    when /^the first lab time page$/
+      '/lab_times/42'
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

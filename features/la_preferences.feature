@@ -4,7 +4,6 @@ Feature: Verify Lab Assistant Preferences
     So that there is no conflict later on when confirming lab times
 
 Background: admin and LAs added to database
-    
     Given the following Lab Assistant exists:
     | first_name | last_name | email            | password | validated |
     | Alice1     | Assistant | labass1@test.com | password | true      |
