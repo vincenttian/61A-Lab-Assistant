@@ -6,11 +6,11 @@ Feature: Check In Form Functionality Test
 Background: admin and LAs added to database
     
     Given the following Lab Assistant exists:
-    | first_name | last_name | email            | password | validated |
-    | Alice1     | Assistant | labass1@test.com | password | false     |
-    | Bob2       | Assistant | labass2@test.com | password | false     |
-    | Claire3    | Assistant | labass3@test.com | password | false     |
-    | Dylan4     | Assistant | labass4@test.com | password | false     |
+    | first_name | last_name | email            | password | validated | SID      |
+    | Alice1     | Assistant | labass1@test.com | password | false     | 12345672 |
+    | Bob2       | Assistant | labass2@test.com | password | false     | 12345673 | 
+    | Claire3    | Assistant | labass3@test.com | password | false     | 12345674 |
+    | Dylan4     | Assistant | labass4@test.com | password | false     | 12345678 |
 
     Given the following Teaching Assistant exists:
     | first_name   | last_name | email            | password  | validated |
@@ -34,7 +34,7 @@ Background: admin and LAs added to database
         And I follow "Check In Here"
         Then I should see "Lab Assistant Check-In"
         And I fill in "check_in_form_name" with "Youri"
-        And I fill in "check_in_form_SID" with "123456"
+        And I fill in "check_in_form_SID" with "12345678"
         And I choose "check_in_form_event_office_hours"
         And I press "Check-In"
         Then I should see "Showing Check In Form"

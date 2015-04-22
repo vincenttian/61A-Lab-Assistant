@@ -32,6 +32,7 @@ Background: admin and LAs added to database
         Given I am on the la login page
         And I fill in "lab_assistant_email" with "labass1@test.com"
         And I fill in "lab_assistant_password" with "password"
+        And I fill in "lab_assistant_SID" with "12245670"
         And I press "Log in"
         When I go to the admin dashboard page
         Then I should see "Lab Assistant Dashboard"
