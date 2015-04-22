@@ -29,13 +29,22 @@ module Admins
     end
 
     def match
-      las = LabAssistant.where('preferred_lab_times!=?', []).order(preferred_lab_times: :asc)
+      las = LabAssistant.includes(:lab_times).where('validated =?', true).order(preferred_lab_times: :asc)
       las.to_a.each do |la|
-        lab_times = la.preferred_lab_times
-        randomly_assigned = la.preferred_lab_times.shuffle.pop
-        ran_lab_time = LabTime.find(randomly_assigned)
-        la.lab_times << ran_lab_time
-        la.save
+        # only assign lab assistants without lab time
+        if not la.lab_times.to_a.size > 0
+          lab_times = la.preferred_lab_times
+          la.preferred_lab_times.shuffle.each do |f|
+            l = LabTime.find(f)
+            # continue iterating through shuffled array if # lab assistants greater than 6
+            if l.lab_assistants.size > 6
+              next
+            else
+              la.lab_times << l
+              la.save
+            end
+          end
+        end
       end
       redirect_to admins_dashboard_path
     end
