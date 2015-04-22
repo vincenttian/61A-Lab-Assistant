@@ -28,6 +28,11 @@ module Admins
       end
     end
 
+    def export_check_ins
+      @check_ins =  CheckInForm.order(:name)
+      send_data @check_ins.to_csv
+    end
+
     private
 
     def validate_all(users)
