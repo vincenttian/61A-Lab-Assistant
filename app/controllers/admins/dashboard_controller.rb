@@ -28,6 +28,10 @@ module Admins
       end
     end
 
+    def match
+      1/0
+    end
+
     private
 
     def validate_all(users)

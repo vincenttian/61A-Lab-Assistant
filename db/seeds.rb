@@ -38,7 +38,7 @@ LabTime.all.to_a.each do |lt|
   lab_ids.append(lt.id)
 end
 LabAssistant.all.to_a.each do |l| 
-  a = (0..6).to_a.shuffle 
+  a = (1..7).to_a.shuffle 
   l.preferred_lab_times = (l.preferred_lab_times.dup << a.pop << a.pop << a.pop)
   l.save
 end
