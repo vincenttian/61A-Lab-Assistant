@@ -6,11 +6,11 @@ Feature: Check CanCan Authorization
 Background: admin and LAs added to database
     
     Given the following Lab Assistant exists:
-    | first_name | last_name | email            | password | validated |
-    | Alice1     | Assistant | labass1@test.com | password | true      |
-    | Bob2       | Assistant | labass2@test.com | password | false     |
-    | Claire3    | Assistant | labass3@test.com | password | false     |
-    | Dylan4     | Assistant | labass4@test.com | password | false     |
+    | first_name | last_name | email            | password | validated |  SID      |
+    | Alice1     | Assistant | labass1@test.com | password | true      | 12345670  |
+    | Bob2       | Assistant | labass2@test.com | password | false     | 12345671  |
+    | Claire3    | Assistant | labass3@test.com | password | false     | 12345672  |
+    | Dylan4     | Assistant | labass4@test.com | password | false     | 12345673  |
 
     Given the following admin exists:
     | first_name   | last_name | email             | password  |
@@ -32,7 +32,6 @@ Background: admin and LAs added to database
         Given I am on the la login page
         And I fill in "lab_assistant_email" with "labass1@test.com"
         And I fill in "lab_assistant_password" with "password"
-        And I fill in "lab_assistant_SID" with "12245670"
         And I press "Log in"
         When I go to the admin dashboard page
         Then I should see "Lab Assistant Dashboard"

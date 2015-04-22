@@ -6,8 +6,8 @@ Feature: Verify Lab Assistant Preferences
 Background: admin and LAs added to database
     
     Given the following Lab Assistant exists:
-    | first_name | last_name | email            | password | validated |
-    | Alice1     | Assistant | labass1@test.com | password | true      |
+    | first_name | last_name | email            | password | validated | SID      |
+    | Alice1     | Assistant | labass1@test.com | password | true      | 12345670 |
 
     Given the following lab times exists:
     | open      | close    |  day        |

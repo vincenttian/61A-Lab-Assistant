@@ -55,7 +55,7 @@ Background: admin and LAs added to database
         Given I am on the teaching assistant dashboard page
         And I follow "Check In Here"
         Then I should see "Lab Assistant Check-In"
-        And I fill in "check_in_form_SID" with "123456"
+        And I fill in "check_in_form_SID" with "12345672"
         And I press "Check-In"
         Then I should see "Lab Assistant Check-In"
 
@@ -68,7 +68,7 @@ Background: admin and LAs added to database
         And I follow "Check In Here"
         Then I should see "Lab Assistant Check-In"
         And I fill in "check_in_form_name" with "Youri"
-        And I fill in "check_in_form_SID" with "123456"
+        And I fill in "check_in_form_SID" with "12345678"
         And I choose "check_in_form_event_office_hours"
         And I press "Check-In"
         And I follow "Edit this form"
@@ -85,7 +85,7 @@ Background: admin and LAs added to database
         And I follow "Check In Here"
         Then I should see "Lab Assistant Check-In"
         And I fill in "check_in_form_name" with "Youri"
-        And I fill in "check_in_form_SID" with "123456"
+        And I fill in "check_in_form_SID" with "12345678"
         And I choose "check_in_form_event_office_hours"
         And I press "Check-In"
         And I follow "Delete This Check-In"
