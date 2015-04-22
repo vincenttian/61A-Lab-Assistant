@@ -7,8 +7,8 @@
 #  created_at         :datetime
 #  updated_at         :datetime
 #  teaching_assistant :string(255)
-#  lab_time_id        :integer
-#  checkins           :integer          default([]), is an Array
+#  SID                :string(255)
+#  event              :integer
 #
 
 class CheckInForm < ActiveRecord::Base

@@ -21,6 +21,7 @@
 #  last_sign_in_ip        :string(255)
 #  validated              :boolean          default(FALSE)
 #  preferred_lab_times    :integer          default([]), is an Array
+#  SID                    :integer
 #
 
 require 'test_helper'

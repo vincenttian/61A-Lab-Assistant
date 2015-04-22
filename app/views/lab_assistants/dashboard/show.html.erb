@@ -37,6 +37,13 @@
 	<% for l in @curr_user.lab_times.to_a do %>
 		<p> Lab <%= l.id %> </p>
 	<% end %>
+	<p> Past Check Ins: </p>
+	<% for ch in @checkins do %>
+		<p> 
+			<%= ch.event %> on 
+			<%= ch.created_at.strftime("%A, %m/%d/%y %H:%M") %>
+		</p>
+	<% end %>
 
 </div>
 

@@ -7,6 +7,7 @@ module LabAssistants
       @lt = LabTime.all
       @curr_user = current_user
       @preferred_times = current_user.preferred_lab_times
+      @checkins = CheckInForm.where(SID: current_user.SID.to_s)
     end
 
   end

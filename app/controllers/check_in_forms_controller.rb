@@ -3,6 +3,14 @@ class CheckInFormsController < ApplicationController
   end
 
   def create
+    sid = params[:check_in_form][:SID]
+    la = LabAssistant.where(SID: sid)
+    if la.size == 0
+      flash[:error] = "Couldn't find lab assistant with that SID, try again!"
+      render new_check_in_form_path      
+      return
+    end
+
     @form = CheckInForm.new(check_in_form_params)
     @form.teaching_assistant = TeachingAssistant.find_by_id(current_user.id).to_s
     if @form.save
