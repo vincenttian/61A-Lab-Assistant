@@ -38,6 +38,6 @@ Rails.application.routes.draw do
   match 'lab_assistants/contract/sign_up', to: 'lab_assistants#new_contract', via: :get
   match 'lab_assistants/contract/sign_up', to: 'lab_assistants#create_contract', via: :post
 
-  match '/admins/dashboard/export_check_ins', to: 'admins/dashboard#export_check_ins', via: :get, as: :export_check_ins
+  match '/admins/dashboard/export_check_ins', to: 'admins/dashboard#export_check_ins', via: [:get, :post], as: :export_check_ins
 
 end

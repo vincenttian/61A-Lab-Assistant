@@ -126,8 +126,9 @@
 		  <%= f.submit %>
 		<% end %>	
 
+		<h3 align="center"> Check Ins </h3>
 
-		<%= link_to "export checkins", export_check_ins_path %>
+		<%= button_to "Export as CSV", export_check_ins_path(format: 'csv') %>
 
 	</div>
 </div>
