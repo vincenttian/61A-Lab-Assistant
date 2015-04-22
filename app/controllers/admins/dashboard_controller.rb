@@ -31,7 +31,7 @@ module Admins
     def export_check_ins
       @check_ins =  CheckInForm.order(:name)
       respond_to do  |format| 
-        format.csv { send_data @check_ins.to_csv }
+        format.csv { send_data @check_ins.to_csv, type: 'text/csv', filename: 'check_ins.csv' }
       end
     end
 
