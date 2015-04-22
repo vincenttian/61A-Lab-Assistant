@@ -16,5 +16,14 @@ class CheckInForm < ActiveRecord::Base
 
   validates :name, presence: true
 
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |check_in|
+        csv << check_in.attributes.values_at(*column_names)
+      end
+    end
+  end
+
 end
 	

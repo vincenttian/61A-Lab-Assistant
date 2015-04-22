@@ -29,9 +29,9 @@
 						<% end %>
 
 
-					<%= submit_tag "Validate" %>
-					<%= submit_tag "Invalidate" %>
-					<%= submit_tag "Delete" %>
+					<%= submit_tag "Validate", :id=> "la_validate" %>
+					<%= submit_tag "Invalidate", :id=> "la_invalidate" %>
+					<%= submit_tag "Delete", :id=> "la_delete" %>
 
 					</tbody>
 				</table>
@@ -65,9 +65,9 @@
 						</tr>
 				<% end %>
 
-					<%= submit_tag "Validate" %>
-					<%= submit_tag "Invalidate" %>
-					<%= submit_tag "Delete" %>
+					<%= submit_tag "Validate", :id=> "ta_validate" %>
+					<%= submit_tag "Invalidate", :id=> "ta_invalidate" %>
+					<%= submit_tag "Delete", :id=> "ta_delete" %>
 
 					</tbody>
 				</table>
@@ -135,5 +135,9 @@
 		  
 		  <%= f.submit %>
 		<% end %>	
+		<h3 align="center"> Check Ins </h3>
+
+		<%= button_to "Export Check Ins as CSV", export_check_ins_path(format: 'csv') %>
+
 	</div>
 </div>
