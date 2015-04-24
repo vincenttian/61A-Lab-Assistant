@@ -1,5 +1,6 @@
 class CheckInFormsController < ApplicationController
   def new
+    @course = Course.find(current_user.course_id)
   end
 
   def create
