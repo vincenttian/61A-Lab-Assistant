@@ -3,7 +3,17 @@ Lab Time <%= @l.id %>
 Assign Lab Assistant To Lab
 <p> 
 	<%= form_for @l do |f| %>
-	  <% options = options_from_collection_for_select(@las, 'id', 'email') %>
+		
+	  <% case @l.course_id%>
+	  <% when 1 %>
+			<% options = options_from_collection_for_select(@a_las, 'id', 'email') %>
+	  <% when 2 %>
+		  <% options = options_from_collection_for_select(@b_las, 'id', 'email') %>
+	  <% when 3 %>
+		  <% options = options_from_collection_for_select(@c_las, 'id', 'email') %>	
+	  <% else %>
+		  <!-- more classes in future -->
+	  <% end %>
 	  <%= f.select :id,  options, include_blank: true %>
 	  <%= f.hidden_field :lab_time_id, :value => @l.id %>
       <input name="assign_la" type="submit" value="Assign LA"/>

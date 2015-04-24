@@ -16,6 +16,7 @@
 #  first_name             :string(255)
 #  last_name              :string(255)
 #  validated              :boolean          default(FALSE)
+#  course_id              :integer
 #
 
 require 'test_helper'

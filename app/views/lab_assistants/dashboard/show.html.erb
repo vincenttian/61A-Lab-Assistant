@@ -1,6 +1,6 @@
 <div class="row">    
 	<br>
-	<h2 align="center"> Lab Assistant Dashboard Stuff</h2>
+	<h2 align="center"> <%= Course.find(@curr_user.course_id).name %> Lab Assistant Dashboard Stuff</h2>
 	<p> Lab Times: </p>
 	<p> Please Indicate Which Lab Times You Are Available for: </p>
 	<% unless @lt.empty? %>

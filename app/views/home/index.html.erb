@@ -2,7 +2,7 @@
 	<nav class="navbar-collapse bs-navbar-collapse" role="navigation">
 		<ul class="nav navbar-nav"> 
 			<li> 
-				<a href="/">CS61a Lab Assistant Home</a>		
+				<a href="/">CS61A/B/C Lab Assistant Home</a>		
 			</li>
 		</ul>
 		<ul class="nav navbar-nav navbar-right"> 
@@ -71,6 +71,7 @@
 				First name: <%= f.text_field :first_name, required: "" %><br />
 				Last name : <%= f.text_field :last_name, required: "" %><br />
 				Email : <%= f.email_field :email, required: "" %><br />
+				Class: <%= f.select :course_id, options_for_select(%w[CS61A CS61B CS61C]) %> <br />
 				<%= f.submit %>
 			<% end %>
   		</div>
@@ -83,6 +84,7 @@
 			Last name : <%= f.text_field :last_name, required: "" %><br />
 			Email : <%= f.email_field :email, required: "" %><br />
 			SID : <%= f.text_field :SID, required: "" %><br />
+			Class: <%= f.select :course_id, options_for_select(%w[CS61A CS61B CS61C]) %> <br />
 			<%= f.submit %>
 		  <% end %>
 	    </div>

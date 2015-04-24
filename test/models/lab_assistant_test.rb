@@ -22,6 +22,7 @@
 #  validated              :boolean          default(FALSE)
 #  preferred_lab_times    :integer          default([]), is an Array
 #  SID                    :integer
+#  course_id              :integer
 #
 
 require 'test_helper'

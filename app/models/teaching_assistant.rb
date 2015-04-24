@@ -16,15 +16,18 @@
 #  first_name             :string(255)
 #  last_name              :string(255)
 #  validated              :boolean          default(FALSE)
+#  course_id              :integer
 #
 
 class TeachingAssistant < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :rememberable, :validatable  
   has_many :lab_assistants
+  belongs_to :course
   has_and_belongs_to_many :lab_times
   
   validates :first_name, presence: true
   validates :last_name, presence: true
+  validates :course_id, presence: true
   validates :email, uniqueness: true
 
   def name

@@ -9,7 +9,7 @@ Given /the following lab times exists/ do |la_table|
     "Sunday" => Date.new(2000, 1, 2)
   }
   la_table.hashes.each do |la|
-    a = LabTime.create(open: Time.parse(la['open']), close: Time.parse(la['close']), day: days_of_week[la['day']])
+    a = LabTime.create(open: Time.parse(la['open']), close: Time.parse(la['close']), day: days_of_week[la['day']], course_id: la['course_id'])
   end  
 end
 

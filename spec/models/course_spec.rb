@@ -1,18 +1,15 @@
 # == Schema Information
 #
-# Table name: lab_times
+# Table name: courses
 #
 #  id         :integer          not null, primary key
-#  open       :time
-#  close      :time
-#  day        :date
+#  name       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
-#  course_id  :integer
 #
 
 require 'rails_helper'
 
-RSpec.describe LabTime, :type => :model do
+RSpec.describe Course, :type => :model do
   pending "add some examples to (or delete) #{__FILE__}"
 end

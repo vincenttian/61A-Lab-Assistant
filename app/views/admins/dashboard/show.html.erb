@@ -14,6 +14,7 @@
 							<th>Validation Status</th>
 							<th>Lab Times </th>
 							<th>Lab Preferences </th>
+							<th>Course </th>
 						</tr>
 					</thead>
 					<tbody>
@@ -25,6 +26,7 @@
 								<td> <%= text_for_validation_status(l.validated) %></td>
 								<td> <%= l.lab_times.to_a %> </td>
 								<td> <%= l.preferred_lab_times %> </td>
+								<td> <%= l.course.name %> </td>
 							</tr>
 						<% end %>
 
@@ -53,6 +55,7 @@
 							<th>Full Name</th>
 							<th>Email</th>
 							<th>Validation Status</th>
+							<th>Course </th>
 						</tr>
 					</thead>
 				<% for t in @ta do %>
@@ -62,6 +65,7 @@
 							<td> <a href= <%="#{teaching_assistant_path(t)}"%>> <%= t.first_name %> <%= t.last_name %> </a></td>
 							<td> <%= t.email %> </td>
 							<td> <%= text_for_validation_status(t.validated) %></td>
+							<td> <%= t.course.name %> </td>
 						</tr>
 				<% end %>
 
@@ -86,6 +90,7 @@
 						<th> </th>
 						<th> Assign Teaching Assistant </th>
 						<th> Current Teaching Assistant(s) </th>
+						<th>Course</th>
 						<th>Lab</th>
 						<th>Day</th>
 						<th>Beginning</th>
@@ -100,7 +105,16 @@
 								  <input name="submit_ta" type="submit" value="Assign TA"/>
 								</td>
 								<td> 
-									<% options = options_from_collection_for_select(@valid_tas, 'id', 'email') %>
+									<% case t.course_id%>
+									<% when 1 %>
+										<% options = options_from_collection_for_select(@a_valid_tas, 'id', 'email') %>
+									<% when 2 %>
+										<% options = options_from_collection_for_select(@b_valid_tas, 'id', 'email') %>
+									<% when 3 %>
+										<% options = options_from_collection_for_select(@c_valid_tas, 'id', 'email') %>	
+									<% else %>
+										<!-- more classes in future -->
+									<% end %>
 								    <%= f.hidden_field :lab_time_id, :value => t.id %>
 									<%= f.select :id,  options, include_blank: true %>
 								</td>
@@ -109,6 +123,7 @@
 										<%= ta.email %>
 									<% end %>		
 								</td>
+								<td> <%= Course.find(t.course_id).name %> </td>
 								<td> <a href=<%= lab_time_path(t)%>> <%= t.id %> </a> </td>
 								<td> <%= t.day.strftime("%A") %> </td>
 								<td> <%= t.open.strftime("%I:%M%p") %> </td>
@@ -123,6 +138,7 @@
 		<% end %>
 
 		<%= form_for @new_labtime do |f|%>
+		  Class: <%= f.select :course_id, options_for_select(%w[CS61A CS61B CS61C]) %> <br />
 		  <%= f.select :day, ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] %>
 		  <p>
 		    beginning:

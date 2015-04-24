@@ -3,6 +3,16 @@ class LabAssistantsController < ApplicationController
   def create
   	@la = LabAssistant.new(la_params)
     @la.password = 'password'
+    case params[:lab_assistant][:course_id]
+    when 'CS61A'
+      @la.course_id = 1
+    when 'CS61B'
+      @la.course_id = 2
+    when 'CS61C'
+      @la.course_id = 3
+    else
+      # potential other classes
+    end
   	if @la.save
   	  redirect_to root_path, flash: { success: "You will receive an email when you are accepted as a Lab Assistant" }
   	else
