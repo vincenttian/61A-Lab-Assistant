@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150422062410) do
+ActiveRecord::Schema.define(version: 20150424022959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,7 +42,10 @@ ActiveRecord::Schema.define(version: 20150422062410) do
     t.string   "teaching_assistant"
     t.string   "SID"
     t.integer  "event"
+    t.integer  "course_id"
   end
+
+  add_index "check_in_forms", ["course_id"], name: "index_check_in_forms_on_course_id", using: :btree
 
   create_table "contracts", force: true do |t|
     t.integer  "lab_assistant_id"
@@ -60,6 +63,12 @@ ActiveRecord::Schema.define(version: 20150422062410) do
   end
 
   add_index "contracts", ["lab_assistant_id"], name: "index_contracts_on_lab_assistant_id", using: :btree
+
+  create_table "courses", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "lab_assistants", force: true do |t|
     t.string   "name"
@@ -81,8 +90,10 @@ ActiveRecord::Schema.define(version: 20150422062410) do
     t.boolean  "validated",              default: false
     t.integer  "preferred_lab_times",    default: [],                 array: true
     t.integer  "SID"
+    t.integer  "course_id"
   end
 
+  add_index "lab_assistants", ["course_id"], name: "index_lab_assistants_on_course_id", using: :btree
   add_index "lab_assistants", ["teaching_assistant_id"], name: "index_lab_assistants_on_teaching_assistant_id", using: :btree
 
   create_table "lab_assistants_times", force: true do |t|
@@ -123,9 +134,11 @@ ActiveRecord::Schema.define(version: 20150422062410) do
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "validated",              default: false
+    t.integer  "course_id"
   end
 
   add_index "teaching_assistants", ["confirmation_token"], name: "index_teaching_assistants_on_confirmation_token", unique: true, using: :btree
+  add_index "teaching_assistants", ["course_id"], name: "index_teaching_assistants_on_course_id", using: :btree
   add_index "teaching_assistants", ["email"], name: "index_teaching_assistants_on_email", unique: true, using: :btree
   add_index "teaching_assistants", ["reset_password_token"], name: "index_teaching_assistants_on_reset_password_token", unique: true, using: :btree
   add_index "teaching_assistants", ["unlock_token"], name: "index_teaching_assistants_on_unlock_token", unique: true, using: :btree

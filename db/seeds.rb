@@ -1,10 +1,15 @@
+# Seed Courses
+a = Course.create(name: 'CS61A')
+b = Course.create(name: 'CS61B')
+c = Course.create(name: 'CS61B')
+
 # Seed Admin, TAs, and LAs
 Admin.create(first_name: 'big', last_name: 'boss', email: 'bigboss@test.com', password: 'password')
 (0..5).each do |i|
   ta = "TA#{i}"
   la = "LA#{i}"
-  t = TeachingAssistant.create(first_name: ta, last_name: 'Smith', email: ta+'@test.com', password: 'password')
-  l = LabAssistant.create(first_name: la, last_name: 'Doe', email: la+'@test.com', password: 'password', SID: 12345670 + i)
+  t = TeachingAssistant.create(first_name: ta, last_name: 'Smith', email: ta+'@test.com', password: 'password', course_id: a.id)
+  l = LabAssistant.create(first_name: la, last_name: 'Doe', email: la+'@test.com', password: 'password', SID: 12345670 + i, course_id: a.id)
   l.teaching_assistant_id = t
   t.lab_assistants << l
 end

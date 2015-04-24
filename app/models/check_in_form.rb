@@ -9,6 +9,7 @@
 #  teaching_assistant :string(255)
 #  SID                :string(255)
 #  event              :integer
+#  course_id          :integer
 #
 
 class CheckInForm < ActiveRecord::Base

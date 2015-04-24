@@ -22,11 +22,13 @@
 #  validated              :boolean          default(FALSE)
 #  preferred_lab_times    :integer          default([]), is an Array
 #  SID                    :integer
+#  course_id              :integer
 #
 
 class LabAssistant < ActiveRecord::Base
   devise :database_authenticatable, :recoverable, :rememberable, :trackable
   belongs_to :teaching_assistant
+  belongs_to :course
   has_and_belongs_to_many :lab_times
 
   has_one :contract
