@@ -4,6 +4,12 @@ Given /the following admin exists/ do |admin_table|
   end
 end
 
+Given /the following Course exists/ do |course_table|
+  course_table.hashes.each do |course|
+    a = Course.create(name: course['name'], id: course['id'])
+  end
+end
+
 Then(/^I should see 'Invalid login' on the page$/) do
   page.html.index("Invalid email address or password").should > 0
 end

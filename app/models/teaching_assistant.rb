@@ -27,6 +27,7 @@ class TeachingAssistant < ActiveRecord::Base
   
   validates :first_name, presence: true
   validates :last_name, presence: true
+  validates :course_id, presence: true
   validates :email, uniqueness: true
 
   def name

@@ -36,6 +36,7 @@ class LabAssistant < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :email, uniqueness: true
+  validates :course_id, uniqueness: true
   validates :SID, uniqueness: true
   validates :SID, length: {is: 8}
 end

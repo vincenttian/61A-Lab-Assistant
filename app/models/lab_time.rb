@@ -8,6 +8,7 @@
 #  day        :date
 #  created_at :datetime
 #  updated_at :datetime
+#  course_id  :integer
 #
 
 class LabTime < ActiveRecord::Base
@@ -17,5 +18,6 @@ class LabTime < ActiveRecord::Base
 
   validates :open, presence: true
   validates :close, presence: true
+  validates :course_id, presence: true
   validates :day, presence: true
 end

@@ -7,7 +7,7 @@ Then(/^I should be assigned to a lab$/) do
 end
 
 Given(/^I have signed in to lab$/) do
-  c = CheckInForm.create(name: "Alice1", SID: 12345672, event: 'lab')
+  c = CheckInForm.create(name: "Alice1", SID: 12345672, event: 'lab', course_id: 1)
 end
 
 Then(/^I should see my check in to lab$/) do

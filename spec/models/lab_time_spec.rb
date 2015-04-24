@@ -8,6 +8,7 @@
 #  day        :date
 #  created_at :datetime
 #  updated_at :datetime
+#  course_id  :integer
 #
 
 require 'rails_helper'

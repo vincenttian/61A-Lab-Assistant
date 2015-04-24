@@ -8,19 +8,20 @@ class CheckInFormsController < ApplicationController
     la = LabAssistant.where(SID: sid)
     if la.size == 0
       flash[:error] = "Couldn't find lab assistant with that SID, try again!"
-      render new_check_in_form_path      
+      redirect_to new_check_in_form_path
       return
     end
 
     @form = CheckInForm.new(check_in_form_params)
     @form.teaching_assistant = TeachingAssistant.find_by_id(current_user.id).to_s
+    @form.course_id = current_user.course_id
     if @form.save
       flash[:notice] = "Thank you for checking in!"
       redirect_to check_in_form_path @form
     else  
       # flash message
       flash[:error] = "Couldn't process check-in, try again!"
-      render new_check_in_form_path
+      redirect_to new_check_in_form_path
     end
   end
 

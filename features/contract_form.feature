@@ -6,12 +6,16 @@ Feature: Lab Assistant Contract Form
 
 Background: admin and LAs added to database
 
+    Given the following Course exists:
+    | name  | id |
+    | CS61A | 1  |
+
     Given the following Lab Assistant exists:
-    | first_name | last_name | email            | password | validated | SID      |
-    | Alice1     | Assistant | labass1@test.com | password | false     | 12345671 |
+    | first_name | last_name | email            | password | validated | SID      | course_id |
+    | Alice1     | Assistant | labass1@test.com | password | false     | 12345671 | 1         |
 
     Given the following admin exists:
-    | first_name   | last_name | email            | password  |
+    | first_name   | last_name | email            | password  | 
     | admin        | 1         | bigboss@test.com | password  |
 
     Scenario: Validating an invalid signed up lab assistant
@@ -34,11 +38,11 @@ Background: admin and LAs added to database
 
     Scenario: Validating an invalid not signed up lab assistant
         Given I am on the contract form page
-        And I fill in "contract_email_address" with "labass2@test.com"
+        And I fill in "contract_email_address" with "labass1@test.com"
         And I fill in "contract_first_name" with "Alice2"
         And I fill in "contract_last_name" with "Assistant"
         And I fill in "contract_times_assisted" with "1"
-        And I fill in "contract_student_id" with "12345678"
+        And I fill in "contract_student_id" with "12345671"
         And I fill in "contract_abide_by_rules" with "Alice2 Assistant"
         And I press "Submit"
         Then I should see a contract form confirmation
@@ -47,7 +51,7 @@ Background: admin and LAs added to database
         And I fill in "admin_password" with "password"
         And I press "Log in"
         Given I am on the admin dashboard page
-        Then I should see "Alice2"
+        Then I should see "labass1@test.com"
         Then I should see "Valid"
 
     Scenario: Correct fields filled out

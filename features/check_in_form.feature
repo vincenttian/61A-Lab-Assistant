@@ -4,17 +4,21 @@ Feature: Check In Form Functionality Test
     I want a functional lab assistant check in form
 
 Background: admin and LAs added to database
+
+    Given the following Course exists:
+    | name  | id |
+    | CS61A | 1  |
     
     Given the following Lab Assistant exists:
-    | first_name | last_name | email            | password | validated | SID      |
-    | Alice1     | Assistant | labass1@test.com | password | false     | 12345672 |
-    | Bob2       | Assistant | labass2@test.com | password | false     | 12345673 | 
-    | Claire3    | Assistant | labass3@test.com | password | false     | 12345674 |
-    | Dylan4     | Assistant | labass4@test.com | password | false     | 12345678 |
+    | first_name | last_name | email            | password | validated | SID      | course_id |
+    | Alice1     | Assistant | labass1@test.com | password | true      | 12345672 | 1         |
+    | Bob2       | Assistant | labass2@test.com | password | false     | 12345673 | 1         |
+    | Claire3    | Assistant | labass3@test.com | password | false     | 12345674 | 1         |
+    | Dylan4     | Assistant | labass4@test.com | password | true      | 12345678 | 1         |
 
     Given the following Teaching Assistant exists:
-    | first_name   | last_name | email            | password  | validated |
-    | teach        | er        | bigboss@test.com | password  | true      |
+    | first_name   | last_name | email            | password  | validated | course_id |
+    | teach        | er        | bigboss@test.com | password  | true      | 1         |
 
     Scenario: See Check In Link On Dashboard
         Given I am on the teaching assistant login page
@@ -34,12 +38,13 @@ Background: admin and LAs added to database
         And I follow "Check In Here"
         Then I should see "Lab Assistant Check-In"
         And I fill in "check_in_form_name" with "Youri"
-        And I fill in "check_in_form_SID" with "12345678"
+        And I fill in "check_in_form_SID" with "12345672"
         And I choose "check_in_form_event_office_hours"
         And I press "Check-In"
+        And I debug
         Then I should see "Showing Check In Form"
         Then I should see "Youri"
-        Then I should see "123456"
+        Then I should see "12345672"
         Then I should see "teach"
         Then I should see "Check in another lab assistant"
         Then I should see "Edit this form"
@@ -68,7 +73,7 @@ Background: admin and LAs added to database
         And I follow "Check In Here"
         Then I should see "Lab Assistant Check-In"
         And I fill in "check_in_form_name" with "Youri"
-        And I fill in "check_in_form_SID" with "12345678"
+        And I fill in "check_in_form_SID" with "12345672"
         And I choose "check_in_form_event_office_hours"
         And I press "Check-In"
         And I follow "Edit this form"
@@ -85,7 +90,7 @@ Background: admin and LAs added to database
         And I follow "Check In Here"
         Then I should see "Lab Assistant Check-In"
         And I fill in "check_in_form_name" with "Youri"
-        And I fill in "check_in_form_SID" with "12345678"
+        And I fill in "check_in_form_SID" with "12345672"
         And I choose "check_in_form_event_office_hours"
         And I press "Check-In"
         And I follow "Delete This Check-In"
