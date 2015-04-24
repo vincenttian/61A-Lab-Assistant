@@ -11,7 +11,17 @@ class LabTimesController < ApplicationController
 	    "Saturday" => Date.new(2000, 1, 1),
 	    "Sunday" => Date.new(2000, 1, 2)
 	  }
-	case params['lab_time']['day']
+	case params[:lab_time][:course_id]
+    when 'CS61A'
+      @lt.course_id = 1
+    when 'CS61B'
+      @lt.course_id = 2
+    when 'CS61C'
+      @lt.course_id = 3
+    else
+      # potential other classes
+    end
+  case params['lab_time']['day']
   	when 'Sunday'
   	  @lt.day = days_of_week['Sunday']
   	when 'Monday'
@@ -45,7 +55,9 @@ class LabTimesController < ApplicationController
 
   def show
     @l = LabTime.find(params['id'])
-    @las = LabAssistant.where("validated = ?", true)
+    @a_las = LabAssistant.where("validated = ?", true).where(course_id: 1)
+    @b_las = LabAssistant.where("validated = ?", true).where(course_id: 2)
+    @c_las = LabAssistant.where("validated = ?", true).where(course_id: 3)
     @curr_las = @l.lab_assistants
   end
 

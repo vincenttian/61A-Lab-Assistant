@@ -90,6 +90,7 @@
 						<th> </th>
 						<th> Assign Teaching Assistant </th>
 						<th> Current Teaching Assistant(s) </th>
+						<th>Course</th>
 						<th>Lab</th>
 						<th>Day</th>
 						<th>Beginning</th>
@@ -104,7 +105,16 @@
 								  <input name="submit_ta" type="submit" value="Assign TA"/>
 								</td>
 								<td> 
-									<% options = options_from_collection_for_select(@valid_tas, 'id', 'email') %>
+									<% case t.course_id%>
+									<% when 1 %>
+										<% options = options_from_collection_for_select(@a_valid_tas, 'id', 'email') %>
+									<% when 2 %>
+										<% options = options_from_collection_for_select(@b_valid_tas, 'id', 'email') %>
+									<% when 3 %>
+										<% options = options_from_collection_for_select(@c_valid_tas, 'id', 'email') %>	
+									<% else %>
+										<!-- more classes in future -->
+									<% end %>
 								    <%= f.hidden_field :lab_time_id, :value => t.id %>
 									<%= f.select :id,  options, include_blank: true %>
 								</td>
@@ -113,6 +123,7 @@
 										<%= ta.email %>
 									<% end %>		
 								</td>
+								<td> <%= Course.find(t.course_id).name %> </td>
 								<td> <a href=<%= lab_time_path(t)%>> <%= t.id %> </a> </td>
 								<td> <%= t.day.strftime("%A") %> </td>
 								<td> <%= t.open.strftime("%I:%M%p") %> </td>
@@ -127,6 +138,7 @@
 		<% end %>
 
 		<%= form_for @new_labtime do |f|%>
+		  Class: <%= f.select :course_id, options_for_select(%w[CS61A CS61B CS61C]) %> <br />
 		  <%= f.select :day, ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] %>
 		  <p>
 		    beginning:

@@ -3,10 +3,12 @@ module Admins
     before_filter :authenticate_admin!
 
     def show
-      @la = LabAssistant.order("first_name ASC, last_name ASC, email ASC")
-      @ta = TeachingAssistant.order("first_name ASC, last_name ASC, email ASC")
-      @lt = LabTime.all.to_a
-      @valid_tas = TeachingAssistant.where("validated = ?", true)
+      @la = LabAssistant.order("course_id ASC, first_name ASC, last_name ASC, email ASC")
+      @ta = TeachingAssistant.order("course_id ASC, first_name ASC, last_name ASC, email ASC")
+      @lt = LabTime.order("course_id ASC, id ASC").to_a
+      @a_valid_tas = TeachingAssistant.where("validated = ?", true).where(course_id: 1)
+      @b_valid_tas = TeachingAssistant.where("validated = ?", true).where(course_id: 2)
+      @c_valid_tas = TeachingAssistant.where("validated = ?", true).where(course_id: 3)
       @new_labtime = LabTime.new
 
       la_id = params[:la_to_change]

@@ -1,23 +1,31 @@
 # Seed Courses
 a = Course.create(name: 'CS61A')
 b = Course.create(name: 'CS61B')
-c = Course.create(name: 'CS61B')
+c = Course.create(name: 'CS61C')
+courses = [a, b, c]
 
-[a, b, c].each do |course|
-  # Seed Admin, TAs, and LAs
-  Admin.create(first_name: 'big', last_name: 'boss', email: 'bigboss@test.com', password: 'password')
-  (0..5).each do |i|
-    ta = "TA#{i}"
-    la = "LA#{i}"
+# Seed admin
+Admin.create(first_name: 'big', last_name: 'boss', email: 'bigboss@test.com', password: 'password')
+
+# Seed TAs, and LAs for all classes
+course_map = {}
+course_map[a] = 1
+course_map[b] = 2 
+course_map[c] = 3
+
+courses.each do |course|
+  (0..2).each do |i|
+    ta = "#{course.name}_TA#{i}"
+    la = "#{course.name}_LA#{i}"
     t = TeachingAssistant.create(first_name: ta, last_name: 'Smith', email: ta+'@test.com', password: 'password', course_id: course.id)
-    l = LabAssistant.create(first_name: la, last_name: 'Doe', email: la+'@test.com', password: 'password', SID: 12345670 + i, course_id: course.id)
+    l = LabAssistant.create(first_name: la, last_name: 'Doe', email: la+'@test.com', password: 'password', SID: 12345600 + i + course_map[course] * 10, course_id: course.id)
     l.teaching_assistant_id = t
     t.lab_assistants << l
   end
 end
 
-# Seed Lab Times
-[a, b, c].each do |course|
+# Seed Lab Times for all classes
+courses.each do |course|
   days_of_week = {
     "Monday" => Date.new(2000, 1, 3),
     "Tuesday" => Date.new(2000, 1, 4),
@@ -42,11 +50,11 @@ end
 
   # seed lab time preferences of all lab assistants
   lab_ids = []
-  LabTime.all.to_a.each do |lt|
+  LabTime.where(course_id: course.id).to_a.each do |lt|
     lab_ids.append(lt.id)
   end
-  LabAssistant.all.to_a.each do |l| 
-    a = (1..7).to_a.shuffle 
+  LabAssistant.where(course_id: course.id).to_a.each do |l| 
+    a = lab_ids.shuffle 
     l.preferred_lab_times = (l.preferred_lab_times.dup << a.pop << a.pop << a.pop)
     l.save
   end
