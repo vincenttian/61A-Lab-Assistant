@@ -14,6 +14,7 @@
 							<th>Validation Status</th>
 							<th>Lab Times </th>
 							<th>Lab Preferences </th>
+							<th>Course </th>
 						</tr>
 					</thead>
 					<tbody>
@@ -25,6 +26,7 @@
 								<td> <%= text_for_validation_status(l.validated) %></td>
 								<td> <%= l.lab_times.to_a %> </td>
 								<td> <%= l.preferred_lab_times %> </td>
+								<td> <%= l.course.name %> </td>
 							</tr>
 						<% end %>
 
@@ -53,6 +55,7 @@
 							<th>Full Name</th>
 							<th>Email</th>
 							<th>Validation Status</th>
+							<th>Course </th>
 						</tr>
 					</thead>
 				<% for t in @ta do %>
@@ -62,6 +65,7 @@
 							<td> <a href= <%="#{teaching_assistant_path(t)}"%>> <%= t.first_name %> <%= t.last_name %> </a></td>
 							<td> <%= t.email %> </td>
 							<td> <%= text_for_validation_status(t.validated) %></td>
+							<td> <%= t.course.name %> </td>
 						</tr>
 				<% end %>
 
