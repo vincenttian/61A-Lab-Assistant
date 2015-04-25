@@ -1,6 +1,9 @@
 class CheckInFormsController < ApplicationController
   def new
     @course = Course.find(current_user.course_id)
+    if current_user.is_a? TeachingAssistant
+      @header = "ta_header"
+    end
   end
 
   def create
@@ -27,10 +30,16 @@ class CheckInFormsController < ApplicationController
 
   def show
     @form = CheckInForm.find(params[:id])
+    if current_user.is_a? TeachingAssistant
+      @header = "ta_header"
+    end
   end
 
   def edit
     @form = CheckInForm.find(params[:id])
+    if current_user.is_a? TeachingAssistant
+      @header = "ta_header"
+    end
   end
 
   def update

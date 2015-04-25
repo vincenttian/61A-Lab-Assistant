@@ -1,6 +1,5 @@
-<div class="home-banner" align="center">
-  <h1> <%= @course.name %>  Lab Assistant Check-In </h1>
-</div>
+<br>
+<h2 align="center"> <%= @course.name %>  Lab Assistant Check-In</h2>
  		 
 <div align="center">
   <%= form_for CheckInForm.new, url: {action: "create"} do |f| %>

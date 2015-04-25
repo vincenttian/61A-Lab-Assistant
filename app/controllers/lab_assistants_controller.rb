@@ -22,6 +22,11 @@ class LabAssistantsController < ApplicationController
 
   def show
     @la = LabAssistant.find(params[:id])
+    if current_user.is_a? Admin
+      @header = "admin_header"
+    elsif current_user.is_a? TeachingAssistant
+      @header = "ta_header"
+    end
   end
 
   def la_params

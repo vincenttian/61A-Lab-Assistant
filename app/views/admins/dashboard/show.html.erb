@@ -11,6 +11,7 @@
 							<th></th>
 							<th>Full Name</th>
 							<th>Email</th>
+							<th>SID</th>
 							<th>Validation Status</th>
 							<th>Lab Times </th>
 							<th>Lab Preferences </th>
@@ -23,6 +24,7 @@
 								<td> <%= check_box_tag 'la_ids[]', l.id %> </td> 
 								<td> <a href= <%="#{lab_assistant_path(l)}"%>> <%= l.first_name %> <%=l.last_name %> </a></td>
 								<td> <%= l.email %> </td>
+								<td> <%= l.SID %> </td>
 								<td> <%= text_for_validation_status(l.validated) %></td>
 								<td> <%= l.lab_times.to_a %> </td>
 								<td> <%= l.preferred_lab_times %> </td>
