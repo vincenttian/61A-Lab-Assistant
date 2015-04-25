@@ -62,6 +62,8 @@ class LabTimesController < ApplicationController
     @current_user = current_user
     if current_user.is_a? Admin
       @header = "admin_header"
+    elsif current_user.is_a? TeachingAssistant
+      @header = "ta_header"
     end
   end
 
