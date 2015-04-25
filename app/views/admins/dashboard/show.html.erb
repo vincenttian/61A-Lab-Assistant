@@ -26,7 +26,15 @@
 								<td> <%= l.email %> </td>
 								<td> <%= l.SID %> </td>
 								<td> <%= text_for_validation_status(l.validated) %></td>
-								<td> <%= l.lab_times.to_a %> </td>
+								
+
+								<td> 
+									<% for labtime in l.lab_times.to_a do %>
+										<a href=<%= lab_time_path(labtime)%>> <%= labtime.id %> </a>
+									<% end %>		
+								</td>
+
+
 								<td> <%= l.preferred_lab_times %> </td>
 								<td> <%= l.course.name %> </td>
 							</tr>
