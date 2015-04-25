@@ -41,7 +41,6 @@ Background: admin and LAs added to database
         And I fill in "check_in_form_SID" with "12345672"
         And I choose "check_in_form_event_office_hours"
         And I press "Check-In"
-        And I debug
         Then I should see "Showing Check In Form"
         Then I should see "Youri"
         Then I should see "12345672"
