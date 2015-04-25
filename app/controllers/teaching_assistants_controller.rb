@@ -22,6 +22,9 @@ class TeachingAssistantsController < ApplicationController
 
   def show
     @ta = TeachingAssistant.find(params[:id])
+    if current_user.is_a? Admin
+      @header = "admin_header"
+    end
   end
 
   def ta_params

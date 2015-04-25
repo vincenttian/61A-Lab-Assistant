@@ -59,6 +59,10 @@ class LabTimesController < ApplicationController
     @b_las = LabAssistant.where("validated = ?", true).where(course_id: 2)
     @c_las = LabAssistant.where("validated = ?", true).where(course_id: 3)
     @curr_las = @l.lab_assistants
+    @current_user = current_user
+    if current_user.is_a? Admin
+      @header = "admin_header"
+    end
   end
 
   # assigns lab assistants

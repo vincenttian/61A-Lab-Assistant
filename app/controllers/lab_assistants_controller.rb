@@ -22,6 +22,11 @@ class LabAssistantsController < ApplicationController
 
   def show
     @la = LabAssistant.find(params[:id])
+    if current_user.is_a? Admin
+      @header = "admin_header"
+    elsif current_user.is_a? TeachingAssistant
+      @header = "ta_header"
+    end
   end
 
   def la_params
@@ -30,6 +35,7 @@ class LabAssistantsController < ApplicationController
 
   # for submitting lab preferences for LabAssistants
   def update
+    1/0
     if params['lt_ids']
       current_user.preferred_lab_times = params['lt_ids'].map(&:to_i)
     else 
