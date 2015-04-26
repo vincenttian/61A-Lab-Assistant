@@ -1,5 +1,24 @@
-<br>
-<h2 align="center"> Teaching Assistant Detail View</h2>
-<p> first name: <%= @ta.first_name %>
-<p> last name: <%= @ta.last_name %>
-<p> email: <%= @ta.email %>
+<div class="container">
+  <br>
+  <h1 align="center"> Teaching Assistant Detail View</h1>
+  <br><br>
+  <table class="table table-bordered table-hover table-striped">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>First Name</td><td><%= @ta.first_name %></td>
+      </tr>
+      <tr>
+        <td>Last Name</td><td><%= @ta.last_name %></td>
+      </tr>
+      <tr>
+        <td>E-mail</td><td><%= @ta.email %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,50 +1,70 @@
-<div class="row">    
-	<br>
-	<h2 align="center"> <%= Course.find(@curr_user.course_id).name %> Lab Assistant Dashboard Stuff</h2>
-	<p> Lab Times: </p>
-	<p> Please Indicate Which Lab Times You Are Available for: </p>
-	<% unless @lt.empty? %>
-		<%= form_for @curr_user, :url => lab_assistants_preferences_path do |f| %>
-			<table class="table table-hover table-striped">
-				<thead>
-					<tr>
-						<th></th>
-						<th>Lab</th>
-						<th>Day</th>
-						<th>Beginning</th>
-						<th>Ending</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% for t in @lt do %>
-						<tr>
-							<td> <%= check_box_tag 'lt_ids[]', t.id %> </td>
-							<td> <%= t.id %> </td>
-							<td> <%= t.day.strftime("%A") %> </td>
-							<td> <%= t.open.strftime("%I:%M%p") %> </td>
-							<td> <%= t.close.strftime("%I:%M%p") %> </td>
-						</tr>
-					<% end %>
-				</tbody>
-			</table>
-		<input name="submit_preferences" type="submit" value="Submit Lab Preferences"/>
-		<% end %>
-	<% else %>
-		<p> NO Lab Times FOUND </p>
-	<% end %>
-	<br>
-	<p> Matched Lab Times: </p>
-	<% for l in @curr_user.lab_times.to_a do %>
-		<p> Lab <%= l.id %> </p>
-	<% end %>
-	<p> Past Check Ins: </p>
-	<% for ch in @checkins do %>
-		<p> 
-			<%= ch.event %> on 
-			<%= ch.created_at.strftime("%A, %m/%d/%y %H:%M") %>
-		</p>
-	<% end %>
+<div class="container">
+	<div class="row">    
+		<br>
+		<h1 align="center"> <%= Course.find(@curr_user.course_id).name %> Lab Assistant Dashboard</h1>
+		<br>
+		<h4> Lab Times </h4>
+		<span> Please indicate which lab times you are available for: </span>
 
+		<input name="submit_preferences" class="btn btn-primary float-right" type="submit" value="Submit Lab Preferences"/>
+
+		<br><br>
+
+		<% unless @lt.empty? %>
+			<%= form_for @curr_user, :url => lab_assistants_preferences_path do |f| %>
+				<table class="table table-bordered table-hover table-striped">
+					<thead>
+						<tr>
+							<th></th>
+							<th>Lab</th>
+							<th>Day</th>
+							<th>Beginning</th>
+							<th>Ending</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% for t in @lt do %>
+							<tr>
+								<td> <%= check_box_tag 'lt_ids[]', t.id %> </td>
+								<td> <%= t.id %> </td>
+								<td> <%= t.day.strftime("%A") %> </td>
+								<td> <%= t.open.strftime("%I:%M%p") %> </td>
+								<td> <%= t.close.strftime("%I:%M%p") %> </td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			<% end %>
+		<% else %>
+			<p> NO Lab Times FOUND </p>
+		<% end %>
+
+		<br>
+
+		<h4> Matched Lab Times </h4>
+		<% unless @curr_user.lab_times.to_a.empty? %>
+			<% for l in @curr_user.lab_times.to_a do %>
+				<p> Lab <%= l.id %> </p>
+			<% end %>
+		<% else %>
+			<p>No lab times currently assigned.</p>
+		<% end %>
+		
+		<br>
+
+		<h4> Past Check Ins </h4>
+		<% unless @checkins.empty? %>
+			<% for ch in @checkins do %>
+				<p> 
+					<%= ch.event %> on 
+					<%= ch.created_at.strftime("%A, %m/%d/%y %H:%M") %>
+				</p>
+			<% end %>
+		<% else %>
+			<p>No prior check-ins found.</p>
+		<% end %>
+
+	</div>
 </div>
 
 <!-- check all the preferred times on front end-->

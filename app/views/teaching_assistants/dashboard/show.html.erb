@@ -1,12 +1,25 @@
 <div class="container">
 	<div class="row">    
 		<br>
-		<h2 align="center"> Teaching Assistant Dashboard Stuff</h2>
-		<a href= <%="#{new_check_in_form_path}"%>> Check In Here </a>
-		<p>Lab Assistants</p>
+		<h1 align="center"> Teaching Assistant Dashboard</h1>
+
+		<a class="btn btn-primary btn-lg" href= <%="#{new_check_in_form_path}"%>> Check In Here </a> 
+
+		<br><br>
+
+		<h4>Lab Assistants</h4>
+
+		<span>
+			<%= submit_tag "Validate", :class=> "btn btn-success" %>
+			<%= submit_tag "Invalidate", :class=> "btn btn-warning" %>
+			<%= submit_tag "Delete", :class=> "btn btn-danger" %>
+		</span>
+
+		<br><br>
+
 		<% unless @la.empty? %>
 			<%= form_tag teaching_assistants_dashboard_path do %>
-				<table class="table table-hover table-striped">
+				<table class="table table-bordered table-hover table-striped">
 					<thead>
 						<tr>
 							<th></th>
@@ -25,11 +38,6 @@
 							</tr>
 						<% end %>
 
-
-					<%= submit_tag "Validate" %>
-					<%= submit_tag "Invalidate" %>
-					<%= submit_tag "Delete" %>
-
 					</tbody>
 				</table>
 			<% end %>
@@ -37,9 +45,11 @@
 			<p> NO Lab Assistants FOUND </p>
 		<% end %>
 
-		<p> Lab Times: </p>
+		<br><br>
+
+		<h4> Lab Times </h4>
 		<% unless @lt.empty? %>
-			<table class="table table-hover table-striped">
+			<table class="table table-bordered table-hover table-striped">
 				<thead>
 					<tr>
 						<th>Lab</th>
