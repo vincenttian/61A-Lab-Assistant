@@ -6,12 +6,13 @@
 		<h4> Lab Times </h4>
 		<span> Please indicate which lab times you are available for: </span>
 
-		<input name="submit_preferences" class="btn btn-primary float-right" type="submit" value="Submit Lab Preferences"/>
-
-		<br><br>
-
 		<% unless @lt.empty? %>
 			<%= form_for @curr_user, :url => lab_assistants_preferences_path do |f| %>
+
+				<button name="submit_preferences" class="btn btn-primary float-right" type="submit" value="Submit Lab Preferences">Submit Lab Preferences</button>
+
+				<br><br>
+
 				<table class="table table-bordered table-hover table-striped">
 					<thead>
 						<tr>
