@@ -68,16 +68,17 @@
 
 		<h4>Teaching Assistants</h4>
 
-		<span>
-			<%= submit_tag "Validate", :id=> "ta_validate", :class=> "btn btn-success" %>
-			<%= submit_tag "Invalidate", :id=> "ta_invalidate", :class=> "btn btn-warning" %>
-			<%= submit_tag "Delete", :id=> "ta_delete", :class=> "btn btn-danger" %>
-		</span>
-
-		<br><br>
-
 		<% unless @ta.empty? %>
 			<%= form_tag admin_dashboard_path do %>
+
+				<span>
+					<%= submit_tag "Validate", :id=> "ta_validate", :class=> "btn btn-success" %>
+					<%= submit_tag "Invalidate", :id=> "ta_invalidate", :class=> "btn btn-warning" %>
+					<%= submit_tag "Delete", :id=> "ta_delete", :class=> "btn btn-danger" %>
+				</span>
+
+				<br><br>
+
 				<table class="table table-bordered table-hover table-striped">
 					<thead>
 						<tr>
