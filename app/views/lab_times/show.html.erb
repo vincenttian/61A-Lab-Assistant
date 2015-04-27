@@ -26,6 +26,13 @@
 	<br><br>	
 	<% end %>
 
+	<h4>Current Teaching Assistant:</h4>
+	<p> 
+		<% for ta in @l.teaching_assistants.to_a do %>
+          <a href=<%= teaching_assistant_path(ta)%>> <%= ta.email %> </a>
+        <% end %>
+	</p>
+
 	<h4>Current Lab Assistants:</h4>
 
 	<% unless @curr_las.empty? %>
@@ -36,7 +43,7 @@
 			<tbody>
 			<% for c in @curr_las %>
 				<tr>
-					<td><%= c.email %></td>
+					<td> <a href=<%= lab_assistant_path(c)%>> <%= c.email %> </a> </td>
 				</tr>
 			<% end %>
 			</tbody>
