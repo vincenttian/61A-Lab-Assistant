@@ -45,7 +45,7 @@
 		<h4> Matched Lab Times </h4>
 		<% unless @curr_user.lab_times.to_a.empty? %>
 			<% for l in @curr_user.lab_times.to_a do %>
-				<p> Lab <%= l.id %> </p>
+				<a href= <%="#{lab_time_path(l)}"%>> <%= l.id %>  </a>
 			<% end %>
 		<% else %>
 			<p>No lab times currently assigned.</p>
