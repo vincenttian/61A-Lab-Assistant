@@ -1,36 +1,54 @@
-<br>
-<h2 align="center"> Lab Time <%= @l.id %> Detail View</h2>
+<div class="container">
+	<br>
+	<h1 align="center"> Lab Time <%= @l.id %> Detail View</h1>
 
-<p> Lab Time <%= @l.id %> </p>
+	<% if @current_user.is_a? Admin %>
+		<h4> Assign Lab Assistant To Lab Time <%= @l.id %> </h4>
+		<p> 
+			<%= form_for @l do |f| %>
+				
+			  <% case @l.course_id%>
+			  <% when 1 %>
+					<% options = options_from_collection_for_select(@a_las, 'id', 'email') %>
+			  <% when 2 %>
+				  <% options = options_from_collection_for_select(@b_las, 'id', 'email') %>
+			  <% when 3 %>
+				  <% options = options_from_collection_for_select(@c_las, 'id', 'email') %>	
+			  <% else %>
+				  <!-- more classes in future -->
+			  <% end %>
+			  <%= f.select :id,  options, { include_blank: true }, { class: "form-control form-time" } %>
+			  <%= f.hidden_field :lab_time_id, :value => @l.id %>
+		      <input name="assign_la" type="submit" value="Assign LA" class="btn btn-primary">
+			<% end %>
+		</p>
 
-<% if @current_user.is_a? Admin %>
-	<p> Assign Lab Assistant To Lab </p>
-	<p> 
-		<%= form_for @l do |f| %>
-			
-		  <% case @l.course_id%>
-		  <% when 1 %>
-				<% options = options_from_collection_for_select(@a_las, 'id', 'email') %>
-		  <% when 2 %>
-			  <% options = options_from_collection_for_select(@b_las, 'id', 'email') %>
-		  <% when 3 %>
-			  <% options = options_from_collection_for_select(@c_las, 'id', 'email') %>	
-		  <% else %>
-			  <!-- more classes in future -->
-		  <% end %>
-		  <%= f.select :id,  options, include_blank: true %>
-		  <%= f.hidden_field :lab_time_id, :value => @l.id %>
-	      <input name="assign_la" type="submit" value="Assign LA"/>
-		<% end %>
-	</p>
-<% end %>
-
-Current Lab Assistants:
-
-<% unless @curr_las.empty? %>
-	<%- for c in @curr_las %>
-		<p> <%= c.email %> </p>
+	<br><br>	
 	<% end %>
-<% else %>
-	<p> No Lab Assistants Assiegned to Lab Yet </p>
-<% end %>
+
+	<h4>Current Teaching Assistant:</h4>
+	<p> 
+		<% for ta in @l.teaching_assistants.to_a do %>
+          <a href=<%= teaching_assistant_path(ta)%>> <%= ta.email %> </a>
+        <% end %>
+	</p>
+
+	<h4>Current Lab Assistants:</h4>
+
+	<% unless @curr_las.empty? %>
+		<table class="table table-bordered table-hover table-striped">
+			<thead>
+				<th>E-mail</th>
+			</thead>
+			<tbody>
+			<% for c in @curr_las %>
+				<tr>
+					<td> <a href=<%= lab_assistant_path(c)%>> <%= c.email %> </a> </td>
+				</tr>
+			<% end %>
+			</tbody>
+		</table>
+	<% else %>
+		<p> No Lab Assistants Assigned to Lab Yet </p>
+	<% end %>
+</div>

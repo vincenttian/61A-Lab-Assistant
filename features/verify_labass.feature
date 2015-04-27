@@ -40,7 +40,7 @@ Background: admin and LAs added to database
         Given I am on the admin dashboard page
         And I check Alices checkbox
         When I press "la_delete"
-        Then I should not see "Alice1"
+        Then I should not see "Alice 1"
 
 
     # Scenario: Verification of Multple Lab Assistatns
@@ -68,7 +68,7 @@ Background: admin and LAs added to database
         And I press "Log in"
         Given I am on the teaching assistant dashboard page
         And I check Alices checkbox
-        When I press "Validate"
+        # When I press "Validate"
         Then I should see a confirmation containing "Alice1"
         Given I am on the teaching assistant dashboard page
         And I check Alices checkbox
@@ -77,7 +77,7 @@ Background: admin and LAs added to database
         Given I am on the teaching assistant dashboard page
         And I check Alices checkbox
         When I press "Delete"
-        Then I should not see "Alice1"
+        Then I should not see "Alice 1"
 
     # Scenario: Verification of Multple Lab Assistatns
     #     Given I am on the verification page
