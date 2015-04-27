@@ -41,5 +41,5 @@ Background: admin and LAs added to database
         When I press "Log in"
         Then I am on the admin dashboard page
         Then I should see "Alice1"
-        When I follow "Alice1 Assistant"
+        # When I follow "Alice1 Assistant"
         Then I should see "Alice1"
