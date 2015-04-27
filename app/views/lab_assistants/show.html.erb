@@ -17,7 +17,39 @@
         <td>Last Name</td><td><%= @la.last_name %></td>
       </tr>
       <tr>
+        <td>SID</td><td><%= @la.SID %></td>
+      </tr>
+      <tr>
         <td>E-mail</td><td><%= @la.email %></td>
+      </tr>
+      <tr>
+        <td>Validated</td><td><%= @la.validated %></td>
+      </tr>
+      <tr>
+        <td>Assigned Lab Times</td>
+        <td>
+          <% for labtime in @la.lab_times.to_a do %>
+            <a href=<%= lab_time_path(labtime)%>> <%= labtime.id %> </a>
+          <% end %>   
+        </td>
+      </tr>
+      <tr>
+        <td>Teaching Assistant</td>
+        <td>
+          <a href=<%= teaching_assistant_path(@la.teaching_assistant)%>> <%= @la.teaching_assistant.email %> </a>
+        </td>
+      </tr>
+      <tr>
+        <td>Preferred Lab Times</td>
+        <td>
+          <% for labtime in @la.preferred_lab_times.to_a do %>
+            <% labtime = LabTime.find(labtime) %>
+            <a href=<%= lab_time_path(labtime)%>> <%= labtime.id %> </a>
+          <% end %>   
+        </td>
+      </tr>
+      <tr>
+        <td>Course</td><td><%= Course.find(@la.course_id).name %></td>
       </tr>
     </tbody>
   </table>

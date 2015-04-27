@@ -19,6 +19,25 @@
       <tr>
         <td>E-mail</td><td><%= @ta.email %></td>
       </tr>
+      <tr>
+        <td>Course</td><td><%= Course.find(@ta.course_id).name %></td>
+      </tr>
+      <tr>
+        <td>Lab Times</td>
+        <td>
+          <% for lab in @ta.lab_times.to_a do %>
+            <a href=<%= lab_time_path(lab)%>> <%= lab.id %> </a>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>Lab Assistants</td>
+        <td>
+          <% for la in @ta.lab_assistants.to_a do %>
+            <a href=<%= lab_assistant_path(la)%>> <%= la.email %> </a>
+          <% end %>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
