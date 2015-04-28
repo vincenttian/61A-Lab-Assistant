@@ -174,10 +174,10 @@
 								<td> 
 									<% for ta in t.teaching_assistants.to_a do %>
 										<%= ta.email %>
-									<% end %>		
+									<% end %>
 								</td>
 								<td> <%= Course.find(t.course_id).name %> </td>
-								<td> <a href=<%= lab_time_path(t)%>> <%= t.id %> </a> </td>
+								<td> <a class="lab-<%= t.id %>" href=<%= lab_time_path(t)%>> <%= t.id %> </a> </td>
 								<td> <%= t.day.strftime("%A") %> </td>
 								<td> <%= t.open.strftime("%I:%M%p") %> </td>
 								<td> <%= t.close.strftime("%I:%M%p") %> </td>
