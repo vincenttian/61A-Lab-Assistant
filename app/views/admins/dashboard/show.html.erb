@@ -124,7 +124,7 @@
 			<tbody>
 				<tr>
 					<td><%= f.submit :class => "btn btn-primary" %></td>
-				  <td><%= f.select :course_id, options_for_select(%w[CS61A CS61B CS61C]), {}, { :class => "form-control" } %></td>
+				  <td><%= f.select :course_id, options_for_select(%w[CS10 CS61A CS61B CS61C]), {}, { :class => "form-control" } %></td>
 				  <td><%= f.select :day, ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], {}, { :class => "form-control" }%></td>
 				  <td><%= f.time_select :open, {:ampm => true, :minute_step => 30}, { :class => "form-control form-time" } %></td>
 				  <td><%= f.time_select :close, {:ampm => true, :minute_step => 30}, { :class => "form-control form-time" } %></td>

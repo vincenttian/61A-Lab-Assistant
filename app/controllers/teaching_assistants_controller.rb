@@ -10,11 +10,13 @@ class TeachingAssistantsController < ApplicationController
       @ta.course_id = 2
     when 'CS61C'
       @ta.course_id = 3
+    when 'CS10'
+      @ta.course_id = 4
     else
       # potential other classes
     end
   	if @ta.save
-  	  redirect_to root_path, flash: { success: "You will receive an email when you are accepted as a Teaching Assistant" } 
+  	  redirect_to root_path, flash: { success: "You will receive an email when you are accepted as a Teaching Assistant" }
   	else
   	  redirect_to root_path, flash: { error: @ta.errors.messages.to_s }
   	end

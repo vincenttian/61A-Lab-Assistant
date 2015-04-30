@@ -1,5 +1,5 @@
 class LabAssistantsController < ApplicationController
-  
+
   def create
   	@la = LabAssistant.new(la_params)
     @la.password = 'password'
@@ -10,6 +10,8 @@ class LabAssistantsController < ApplicationController
       @la.course_id = 2
     when 'CS61C'
       @la.course_id = 3
+    when 'CS10'
+      @la.course_id = 4
     else
       # potential other classes
     end
@@ -37,7 +39,7 @@ class LabAssistantsController < ApplicationController
   def update
     if params['lt_ids']
       current_user.preferred_lab_times = params['lt_ids'].map(&:to_i)
-    else 
+    else
       current_user.preferred_lab_times = []
     end
     current_user.save
