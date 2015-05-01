@@ -21,7 +21,7 @@ class CheckInFormsController < ApplicationController
     if @form.save
       flash[:notice] = "Thank you for checking in!"
       redirect_to check_in_form_path @form
-    else  
+    else
       # flash message
       flash[:error] = "Couldn't process check-in, try again!"
       redirect_to new_check_in_form_path
@@ -58,7 +58,7 @@ class CheckInFormsController < ApplicationController
   end
 
   private
-  
+
   # filters out unwanted params
   def check_in_form_params
     params.require(:check_in_form).permit(:name, :SID, :event)
