@@ -25,11 +25,13 @@ RSpec.describe LabTimesController, :type => :controller do
         TeachingAssistant.stub(:find).and_return(@ta)
         LabTime.stub(:find).and_return(@labtime)
         get :ta, :teaching_assistant => {id: 1, lab_timd_id: 1}
+        expect(response).to have_http_status(302)
     end
 
     it "get the show" do
         LabTime.stub(:find).and_return(@labtime)
         get :show, :id => 1
+        expect(response).to have_http_status(:success)
     end
 
     #it "get the update" do
