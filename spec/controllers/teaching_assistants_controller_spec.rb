@@ -9,13 +9,19 @@ before(:each) do
     sign_in @user
 end
 
-  describe "GET teaching_assistant" do
+    describe "GET teaching_assistant" do
     it "show teaching assistant page" do
         TeachingAssistant.stub(:find).and_return(@ta)
         get :show, :id => 1
     end
+    end
 
-  end
+    describe "GET create" do
+    it "shows the create page" do
+        TeachingAssistant.stub(:new).and_return(@ta)
+        get :create, 
+    end 
+    end
 
 
 end
