@@ -4,14 +4,14 @@ RSpec.describe LabAssistantsController, :type => :controller do
     
     before(:each) do
 	@request.env["devise.mapping"] = Devise.mappings[:admin]
-	b = Course.create()
-	a = LabAssistant.create(first_name: 'first', last_name: 'last', email: 'test@test.com', password: 'password', course_id: b.id)	
-	sign_in a
+	@b = Course.create()
+	@a = LabAssistant.create(first_name: 'first', last_name: 'last', email: 'test@test.com', password: 'password', course_id: @b.id)	
+	sign_in @a
     end
 
     it "show returns http success" do		
-	LabAssistant.stub(:find).and_return(a)
-	get "show", :id => b.id
+	LabAssistant.stub(:find).and_return(@a)
+	get "show", :id => @b.id
 	expect(response).to have_http_status(:success)
     end
 
@@ -20,10 +20,10 @@ RSpec.describe LabAssistantsController, :type => :controller do
 	expect(response).to have_http_status(:success)
     end
 
-let(:attribs){{first_name: 'first', last_name: 'last', email: 'test@test.com', password: 'password', course_id: b.id}}
+let(:attribs){{first_name: 'first', last_name: 'last', email: 'test@test.com', password: 'password', course_id: @b.id}}
 
     it "create returns http failure" do
-	LabAssistant.stub(:new).and_return(a)
+	LabAssistant.stub(:new).and_return(@a)
 	for thing in ['CS61A', 'CS61B', 'CS61C', '']
 	    attribs[:course_id] = thing
  	    get :create, {:lab_assistant => attribs}
