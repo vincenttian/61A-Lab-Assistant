@@ -19,13 +19,22 @@ RSpec.describe LabAssistantsController, :type => :controller do
 b = Course.create() 
 let(:attribs){{first_name: 'first', last_name: 'last', email: 'test@test.com', password: 'password', course_id: b.id}}
 
-    it "create returns http success" do
+    it "create returns http failure" do
 	@request.env["devise.mapping"] = Devise.mappings[:admin]
 	b = Course.create()
 	a = LabAssistant.create(first_name: 'first', last_name: 'last', email: 'test@test.com', password: 'password', course_id: b.id)	
 	sign_in a
 	LabAssistant.stub(:new).and_return(a)	
 	get :create, {:lab_assistant => attribs}
+	expect(response).to have_http_status(302)
+    end
+
+let(:con_par){{first_name: 'first', last_name: 'last', email: 'test@test.com', password: 'password', course_id: '69'}}
+
+    it "create_contract returns http failure" do
+	a = LabAssistant.create(first_name: 'first', last_name: 'last', email: 'test@test.com', password: 'password', course_id: b.id)	
+	sign_in a
+	get :create_contract, {:contract => con_par}
 	expect(response).to have_http_status(302)
     end
 	
