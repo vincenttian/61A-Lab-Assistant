@@ -24,4 +24,11 @@ RSpec.describe CheckInFormsController, :type => :controller do
     end
   end
 
+  describe "general stuff" do
+    it "show returns http success" do
+      get :check_in_form_params
+      expect(response).to have_http_status(:success)
+    end
+  end
+
 end
