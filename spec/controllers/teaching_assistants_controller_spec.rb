@@ -10,9 +10,9 @@ before(:each) do
 end
 
   describe "GET teaching_assistant" do
-    it "does an ayy lamo" do
+    it "show teaching assistant page" do
         TeachingAssistant.stub(:find).and_return(@ta)
-        get :show, :id => 699
+        get :show, :id => 1
     end
 
   end
