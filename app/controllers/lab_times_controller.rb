@@ -64,6 +64,8 @@ class LabTimesController < ApplicationController
       @header = "admin_header"
     elsif current_user.is_a? TeachingAssistant
       @header = "ta_header"
+    elsif current_user.is_a? LabAssistant
+      @header = "la_header"
     end
   end
 
