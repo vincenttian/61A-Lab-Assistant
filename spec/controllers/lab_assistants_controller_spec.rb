@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe LabAssistantsController, :type => :controller do	
-    it "create returns http success" do
+    it "show returns http success" do
 	@request.env["devise.mapping"] = Devise.mappings[:admin]
 	b = Course.create()
 	a = LabAssistant.create(first_name: 'first', last_name: 'last', email: 'test@test.com', password: 'password', course_id: b.id)	
@@ -11,7 +11,7 @@ RSpec.describe LabAssistantsController, :type => :controller do
 	expect(response).to have_http_status(:success)
     end
 
-    it "update returns http success" do
+    it "new_contract returns http success" do
 	get :new_contract
 	expect(response).to have_http_status(:success)
     end
@@ -19,7 +19,7 @@ RSpec.describe LabAssistantsController, :type => :controller do
 b = Course.create() 
 let(:attribs){{first_name: 'first', last_name: 'last', email: 'test@test.com', password: 'password', course_id: b.id}}
 
-    it "create_contract returns http success" do
+    it "create returns http success" do
 	@request.env["devise.mapping"] = Devise.mappings[:admin]
 	b = Course.create()
 	a = LabAssistant.create(first_name: 'first', last_name: 'last', email: 'test@test.com', password: 'password', course_id: b.id)	
