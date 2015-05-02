@@ -41,7 +41,7 @@ class LabAssistantsController < ApplicationController
       current_user.preferred_lab_times = []
     end
     current_user.save
-    redirect_to lab_assistants_dashboard_path
+    redirect_to lab_assistants_dashboard_path, flash: { success: "Your preferences have been recorded" }
   end
 
   def new_contract

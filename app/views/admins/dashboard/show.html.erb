@@ -1,11 +1,29 @@
 <div class="container">
 	<div class="row">    
 		<br>
-		<h2 align="center"> Admin Dashboard Stuff</h2>
-		<p>Lab Assistants</p>
+		<h1 align="center">Admin Dashboard</h1>
+
+		<h4>Check Ins</h4>
+		<%= button_to "Export Check Ins as CSV", export_check_ins_path(format: 'csv'), :class=> "btn btn-primary" %>
+
+		<br><br>
+
+		<h4>Lab Assistants</h4>
+
 		<% unless @la.empty? %>
 			<%= form_tag admin_dashboard_path do %>
-				<table class="table table-hover table-striped">
+				<span>
+					<%= submit_tag "Validate", :id=> "la_validate", :class=> "btn btn-success" %>
+					<%= submit_tag "Invalidate", :id=> "la_invalidate", :class=> "btn btn-warning" %>
+					<%= submit_tag "Delete", :id=> "la_delete", :class=> "btn btn-danger" %>
+				</span>
+				<span class="float-right">
+					<a class="btn btn-primary" href=<%= admins_match_path %>> Automatically Match Lab Times</a>
+				</span>
+
+				<br><br>
+
+				<table class="table table-bordered table-hover table-striped">
 					<thead>
 						<tr>
 							<th></th>
@@ -39,33 +57,36 @@
 								<td> <%= l.course.name %> </td>
 							</tr>
 						<% end %>
-
-
-					<%= submit_tag "Validate", :id=> "la_validate" %>
-					<%= submit_tag "Invalidate", :id=> "la_invalidate" %>
-					<%= submit_tag "Delete", :id=> "la_delete" %>
-
 					</tbody>
 				</table>
-				<button type="submit">
-					<a href=<%= admins_match_path %>> Automatically Match Lab Times</a>
-				</button>
 			<% end %>
 		<% else %>
 			<p> NO Lab Assistants FOUND </p>
 		<% end %>
+
 		<br><br>
-		<p>Teaching Assistants</p>
+
+		<h4>Teaching Assistants</h4>
+
 		<% unless @ta.empty? %>
 			<%= form_tag admin_dashboard_path do %>
-				<table class="table table-hover table-striped">
+
+				<span>
+					<%= submit_tag "Validate", :id=> "ta_validate", :class=> "btn btn-success" %>
+					<%= submit_tag "Invalidate", :id=> "ta_invalidate", :class=> "btn btn-warning" %>
+					<%= submit_tag "Delete", :id=> "ta_delete", :class=> "btn btn-danger" %>
+				</span>
+
+				<br><br>
+
+				<table class="table table-bordered table-hover table-striped">
 					<thead>
 						<tr>
 							<th></th>
 							<th>Full Name</th>
 							<th>Email</th>
 							<th>Validation Status</th>
-							<th>Course </th>
+							<th>Course</th>
 						</tr>
 					</thead>
 				<% for t in @ta do %>
@@ -78,11 +99,6 @@
 							<td> <%= t.course.name %> </td>
 						</tr>
 				<% end %>
-
-					<%= submit_tag "Validate", :id=> "ta_validate" %>
-					<%= submit_tag "Invalidate", :id=> "ta_invalidate" %>
-					<%= submit_tag "Delete", :id=> "ta_delete" %>
-
 					</tbody>
 				</table>
 			<% end %>	
@@ -92,9 +108,36 @@
 		
 		<br><br>
 
-		<p> Lab Times: </p>
+		<h4>Create Lab Time</h4>
+
+		<table class="table table-bordered table-hover table-striped">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Class</th>
+					<th>Day</th>
+					<th>Start Time</th>
+					<th>End Time</th>
+				</tr>
+			</thead>
+			<%= form_for @new_labtime do |f|%>
+			<tbody>
+				<tr>
+					<td><%= f.submit :class => "btn btn-primary" %></td>
+				  <td><%= f.select :course_id, options_for_select(%w[CS61A CS61B CS61C]), {}, { :class => "form-control" } %></td>
+				  <td><%= f.select :day, ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], {}, { :class => "form-control" }%></td>
+				  <td><%= f.time_select :open, {:ampm => true, :minute_step => 30}, { :class => "form-control form-time" } %></td>
+				  <td><%= f.time_select :close, {:ampm => true, :minute_step => 30}, { :class => "form-control form-time" } %></td>
+			  </tr>
+			</tbody>
+			<% end %>
+		</table>
+
+		<br><br>
+
+		<h4> Lab Times </h4>
 		<% unless @lt.empty? %>
-			<table class="table table-hover table-striped">
+			<table class="table table-bordered table-hover table-striped">
 				<thead>
 					<tr>
 						<th> </th>
@@ -112,7 +155,7 @@
 						<tr>
 							<%= form_for [t, t.teaching_assistants.new], :url => lab_times_ta_path do |f| %>
 								<td>
-								  <input name="submit_ta" type="submit" value="Assign TA"/>
+								  <input class= "btn btn-primary" name="submit_ta" type="submit" value="Assign TA"/>
 								</td>
 								<td> 
 									<% case t.course_id%>
@@ -125,16 +168,16 @@
 									<% else %>
 										<!-- more classes in future -->
 									<% end %>
-								    <%= f.hidden_field :lab_time_id, :value => t.id %>
-									<%= f.select :id,  options, include_blank: true %>
+								  <%= f.hidden_field :lab_time_id, :value => t.id %>
+									<%= f.select :id, options, { include_blank: true }, { :class => "form-control" } %>
 								</td>
 								<td> 
 									<% for ta in t.teaching_assistants.to_a do %>
 										<%= ta.email %>
-									<% end %>		
+									<% end %>
 								</td>
 								<td> <%= Course.find(t.course_id).name %> </td>
-								<td> <a href=<%= lab_time_path(t)%>> <%= t.id %> </a> </td>
+								<td> <a class="lab-<%= t.id %>" href=<%= lab_time_path(t)%>> <%= t.id %> </a> </td>
 								<td> <%= t.day.strftime("%A") %> </td>
 								<td> <%= t.open.strftime("%I:%M%p") %> </td>
 								<td> <%= t.close.strftime("%I:%M%p") %> </td>
@@ -146,24 +189,6 @@
 		<% else %>
 			<p> NO Lab Times FOUND </p>
 		<% end %>
-
-		<%= form_for @new_labtime do |f|%>
-		  Class: <%= f.select :course_id, options_for_select(%w[CS61A CS61B CS61C]) %> <br />
-		  <%= f.select :day, ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] %>
-		  <p>
-		    beginning:
-		    <%= f.time_select :open, {:ampm => true} %>
-		  </p>
-		  <p>
-		    ending:
-		    <%= f.time_select :close, {:ampm => true} %>
-		  </p>
-		  
-		  <%= f.submit %>
-		<% end %>	
-		<h3 align="center"> Check Ins </h3>
-
-		<%= button_to "Export Check Ins as CSV", export_check_ins_path(format: 'csv') %>
 
 	</div>
 </div>

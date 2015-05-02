@@ -47,9 +47,11 @@ module Admins
               break
             end
           end
+        else
+          return redirect_to admins_dashboard_path, flash: { error: "No matches were made" } 
         end
       end
-      redirect_to admins_dashboard_path
+      redirect_to admins_dashboard_path, flash: { success: "Successful matches!" } 
     end
 
     def export_check_ins
