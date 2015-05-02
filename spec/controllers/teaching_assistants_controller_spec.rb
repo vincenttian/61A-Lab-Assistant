@@ -19,7 +19,7 @@ end
     describe "GET create" do
     it "shows the create page" do
         TeachingAssistant.stub(:new).and_return(@ta)
-        get :create, 
+        get :create, :teaching_assistant => {first_name: 'first', last_name: 'last', email: 'test@test.com', password: 'password'}
     end 
     end
 
