@@ -1,6 +1,6 @@
 class LabAssistantsController < ApplicationController
   
-  def create
+  def create	
   	@la = LabAssistant.new(la_params)
     @la.password = 'password'
     case params[:lab_assistant][:course_id]
