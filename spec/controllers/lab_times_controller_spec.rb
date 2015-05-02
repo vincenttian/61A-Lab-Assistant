@@ -27,6 +27,14 @@ RSpec.describe LabTimesController, :type => :controller do
         get :ta, :teaching_assistant => {id: 1, lab_timd_id: 1}
     end
 
+    it "get the show" do
+        LabTime.stub(:find).and_return(@labtime)
+        get :show, :id => 1
+    end
+
+    #it "get the update" do
+    #    get :update#, :lab_time => {id: 1, lab_time_id: 1}
+    #end
   end
 
 
