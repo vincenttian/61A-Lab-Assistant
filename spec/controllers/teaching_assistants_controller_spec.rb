@@ -17,10 +17,14 @@ end
     end
 
     describe "GET create" do
-    it "shows the create page" do
-        TeachingAssistant.stub(:new).and_return(@ta)
-        get :create, :teaching_assistant => {first_name: 'first', last_name: 'last', email: 'test@test.com', password: 'password'}
-    end 
+    it "Test the create metric" do
+        pars = {first_name: 'first', last_name: 'last', email: 'test@test.com', password: 'password'}
+        for course in ['CS61A', 'CS61B', 'CS61C', '']
+            pars[:course_id] = course
+            get :create, :teaching_assistant => pars
+        end
+
+    end
     end
 
 
