@@ -18,6 +18,8 @@ class LabTimesController < ApplicationController
       @lt.course_id = 2
     when 'CS61C'
       @lt.course_id = 3
+    when 'CS10'
+      @lt.course_id = 4
     else
       # potential other classes
     end
