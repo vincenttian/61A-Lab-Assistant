@@ -19,42 +19,51 @@
 	</nav>
 </div>
 
-<div class="home-banner" align="center">CS61A Lab Assistant Check-Ins</div>
+	<div class="home-banner">
+		<div class="darken">
+			<div class="home-title" align="center">
+				CS61A Lab Assistant Check-Ins
+			</div>
+			<div class="home-caption" align="center">
+				A system created to manage and organize all the lab assistants across UC Berkeley's EECS/CS Departments.
+			</div>
+		</div>
+	</div>
 
 <br> <br>
 
-<div align="center">
-	<%= image_tag "home_icon.png", :class=>"img-responsive", :size=>"420" %>
-</div>
-
-<br> <br>
-
-<div class="row">
-	<div class="col-xs-4" align="center">
-		<%= image_tag "admin.png", :class=>"img-responsive", :size=>"60"%>
-	</div>
-	<div class="col-xs-4" align="center">
-		<%= image_tag "teaching.png", :class=>"img-responsive", :size=>"60"%>
-	</div>
-	<div class="col-xs-4" align="center">
-		<%= image_tag "lab.png", :class=>"img-responsive", :size=>"60"%>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-xs-4" align="center">
-		<p> Admin/Course Manager </p>
-		Control everything!
-	</div>
-	<div class="col-xs-4" align="center">
-		<p> Teaching Assistants </p>
-		Manage your sections and check LAs in!
-	</div>
-	<div class="col-xs-4" align="center">
-		<p> Lab Assistants </p>
-		Keep your contact info up to date!
-	</div>
-</div>
+<ul class="bullets">
+  <li class="bullet">
+    <div class="bullet-icon bullet-icon-1">
+    	<%= image_tag "admin.png", :class=>"img-responsive", :size=>"60"%>
+    </div>
+    <div class="bullet-content">
+      <div class="bullet-title">Admin/Course Manager</div>
+      <p>Administrators of the Lab Assistant Check-In Application can organize and manage 
+      teaching and lab assistants. They can match assistants to lab times, amongst many other features.</p>
+      </div>
+  </li>  
+  <li class="bullet">
+    <div class="bullet-icon bullet-icon-2">
+      <%= image_tag "teaching.png", :class=>"img-responsive", :size=>"60"%>
+    </div>
+    <div class="bullet-content">
+      <div class="bullet-title">Teaching Assistants</div>
+      <p>Teaching assistants can manage lab assistants they've been assigned to. They have the resources
+      and tools to check in individual lab assistants per lab section they meet or have.</p>
+    </div>
+  </li>
+  <li class="bullet">
+    <div class="bullet-icon bullet-icon-3">
+      <%= image_tag "lab.png", :class=>"img-responsive", :size=>"60"%>
+    </div>
+    <div class="bullet-content">
+      <div class="bullet-title">Lab Assistants</div>
+      <p>Lab assistants can sign up and keep track of their assigned lab sections, attendance rate, and
+      teaching assistant they're helping out.</p>
+    </div>
+  </li> 
+</ul>
 
 
 <br> <br>
@@ -63,26 +72,40 @@
 <div class="container">
 	<div class="row">
 		<div class='col-xs-6'>
+  	  	<div class="creation-caption">
   	  		Teaching Assistant Creation
-	        <%= form_for @teachingassistant do |f| %>
-				First name: <%= f.text_field :first_name, required: "" %><br />
-				Last name : <%= f.text_field :last_name, required: "" %><br />
-				Email : <%= f.email_field :email, required: "" %><br />
-				Class: <%= f.select :course_id, options_for_select(%w[CS61A CS61B CS61C]) %> <br />
-				<%= f.submit %>
+  	  	</div>
+
+  	  	<table class="table table-bordered table-hover table-striped">
+  	  		<tbody>
+			      <%= form_for @teachingassistant do |f| %>
+						<tr><td>First name:</td> <td><%= f.text_field :first_name, required: "" , :class => "form-control" %></td></tr>
+						<tr><td>Last name :</td> <td><%= f.text_field :last_name, required: "" , :class => "form-control" %></td></tr>
+						<tr><td>Email :</td> <td><%= f.email_field :email, required: "" , :class => "form-control" %></td></tr>
+						<tr><td>Class :</td> <td><%= f.select :course_id, options_for_select(%w[CS61A CS61B CS61C]), {}, { :class => "form-control" } %></td></tr>
+						<tr><td><%= f.submit :class => "btn btn-primary" %></td></tr>
+					</tbody>
+				</table>
+
 			<% end %>
   		</div>
         <div class='col-xs-6'>
-	      <div>
+	      <div class="creation-caption">
 	        Lab Assistant Creation
 	      </div>
+
+	    <table class="table table-bordered table-hover table-striped">
+  	  	<tbody>
 	      <%= form_for @labassistant do |f| %>
-			First name: <%= f.text_field :first_name, required: "" %><br />
-			Last name : <%= f.text_field :last_name, required: "" %><br />
-			Email : <%= f.email_field :email, required: "" %><br />
-			SID : <%= f.text_field :SID, required: "" %><br />
-			Class: <%= f.select :course_id, options_for_select(%w[CS61A CS61B CS61C]) %> <br />
-			<%= f.submit %>
+					<tr><td>First name : </td><td><%= f.text_field :first_name, required: "" , :class => "form-control" %></td></tr>
+					<tr><td>Last name : </td><td><%= f.text_field :last_name, required: "" , :class => "form-control" %></td></tr>
+					<tr><td>Email : </td><td><%= f.email_field :email, required: "" , :class => "form-control" %></td></tr>
+					<tr><td>SID : </td><td><%= f.text_field :SID, required: "" , :class => "form-control" %></td></tr>
+					<tr><td>Class : </td><td><%= f.select :course_id, options_for_select(%w[CS61A CS61B CS61C]), {}, { :class => "form-control" } %></td></tr>
+					<tr><td><%= f.submit :class => "btn btn-primary" %></td></tr>
+				</tbody>
+			</table>
+
 		  <% end %>
 	    </div>
 	</div>
